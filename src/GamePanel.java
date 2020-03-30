@@ -88,12 +88,13 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+	//check if this works when in game state
 		if(currentState==GAME) {
 			if (e.getKeyCode()==KeyEvent.VK_UP) {
 			    System.out.println("UP");
@@ -107,17 +108,13 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 		    System.out.println("RIGHT");
 		}
-		
-		
-		
-		
 		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+
 		
 	}
 }
