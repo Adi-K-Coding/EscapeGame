@@ -5,11 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener,KeyListener{
+public class GamePanel extends JPanel implements ActionListener, KeyListener, MouseListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU) {
@@ -28,6 +30,9 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 	Font titleFont;
 	Font titleFontTwo;
 	Timer frameDraw;
+	GameButton startButton = new GameButton(272, 250, "Start", 367);
+	GameButton ccButton = new GameButton(272, 300, "Change Character", 285);
+	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321);
 
 	// GamePanel Constructor
 	GamePanel() {
@@ -58,12 +63,11 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
 		g.drawString("Escape", 275, 150);
-		// secondary font/text
+		// Start, Change Character, and Instruction Buttons
 		g.setFont(titleFontTwo);
-		g.setColor(Color.YELLOW);
-		g.drawString("Start", 350, 250);
-		g.drawString("Change Character", 275, 300);
-		g.drawString("Instructions", 315, 350);
+		startButton.draw(g);
+		ccButton.draw(g);
+		instructionButton.draw(g);
 	}
 
 	void drawGameState(Graphics g) {
@@ -88,33 +92,78 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-	
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-	//check if this works when in game state
-		if(currentState==GAME) {
-			if (e.getKeyCode()==KeyEvent.VK_UP) {
-			    System.out.println("UP");
+		if (currentState == GAME) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				System.out.println("UP");
 			}
-		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				System.out.println("DOWN");
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				System.out.println("LEFT");
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				System.out.println("RIGHT");
+			}
 		}
-		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
+		// temporary code for switching screens
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			currentState = MENU;
 		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			currentState = GAME;
 		}
-		}
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 
-		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (currentState == MENU) {
+			if (startButton.isOnButton(e.getX(), e.getY())) {
+				currentState=GAME;
+			System.out.println("Start");
+			}
+			if (ccButton.isOnButton(e.getX(), e.getY())) {
+				System.out.println("Change Character");
+			}
+			if (instructionButton.isOnButton(e.getX(), e.getY())) {
+				System.out.println("Instruction");
+			}
+		}
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
