@@ -130,8 +130,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void mouseClicked(MouseEvent e) {
 		if (currentState == MENU) {
 			if (startButton.isOnButton(e.getX(), e.getY())) {
-				currentState=GAME;
-			System.out.println("Start");
+				currentState = GAME;
+				System.out.println("Start");
 			}
 			if (ccButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Change Character");
