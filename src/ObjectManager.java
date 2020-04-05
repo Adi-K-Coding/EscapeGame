@@ -9,8 +9,12 @@ public class ObjectManager implements ActionListener {
 	Player player;
 
 	ObjectManager(Player player) {
+addPlatform();
+		this.player = player;
+	}
+
+	void addPlatform() {
 		platforms.add(new Platform(400, 300, 200, 20));
-		this.player=player;
 	}
 
 	void draw(Graphics g) {
