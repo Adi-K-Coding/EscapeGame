@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -30,12 +31,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont;
 	Font titleFontTwo;
 	Timer frameDraw;
+	//BUTTONS ON MENU
 	GameButton startButton = new GameButton(272, 250, "Start", 367);
 	GameButton ccButton = new GameButton(272, 300, "Change Character", 285);
 	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321);
-
+	//PLAYER OBJECT
+	Player player = new Player(400, 500, 0);
+	ObjectManager objectManager = new ObjectManager(player);
 	// GamePanel Constructor
-	GamePanel() {
+	
+			GamePanel() {
 		titleFont = new Font("Roboto", Font.PLAIN, 72);
 		titleFontTwo = new Font("Roboto", Font.CENTER_BASELINE, 24);
 		frameDraw = new Timer(1000 / 60, this);
@@ -71,7 +76,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void drawGameState(Graphics g) {
-
+		objectManager.draw(g);
+		
+	
 	}
 
 	void drawEndState(Graphics g) {
@@ -100,16 +107,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == GAME) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("UP");
-			}
+				if (player.y > 0) {
+					player.up();
+				}
+				}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("DOWN");
+				if (player.y < Escape.HEIGHT - player.height) {
+					player.down();
+				}
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("LEFT");
+				if (player.x > 0) {
+					player.left();
+				}
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("RIGHT");
+				if (player.x < Escape.WIDTH+25- player.width)
+					player.right();
 			}
+
+			
 		}
 		// temporary code for switching screens
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -137,7 +157,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				System.out.println("Change Character");
 			}
 			if (instructionButton.isOnButton(e.getX(), e.getY())) {
-				System.out.println("Instruction");
+				System.out.println("Instructions");
+				JOptionPane.showMessageDialog(null, "Move your character using the arrow keys.\n"
+						+ "Use your mouse to aim and use press KEY to shoot. ");
 			}
 		}
 

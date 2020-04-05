@@ -2,19 +2,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class GameButton extends GameObject {
-	// make extend game object class, create gameobject, create constructer that
-	// take x and y, make method in game button that asks
-	// for x and y and tells if its inside the button
 	String text;
 	int textx;
 
 	GameButton(int x, int y, String text, int textx) {
+		super(x,y,250,40);
 		this.x = x;
 		this.y = y;
 		this.text = text;
 		this.textx = textx;
-		width = 250;
-		height = 40;
+		
 
 	}
 
