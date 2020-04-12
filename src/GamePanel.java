@@ -31,16 +31,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont;
 	Font titleFontTwo;
 	Timer frameDraw;
-	//BUTTONS ON MENU
+	// BUTTONS ON MENU
 	GameButton startButton = new GameButton(272, 250, "Start", 367);
 	GameButton ccButton = new GameButton(272, 300, "Change Character", 285);
 	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321);
-	//PLAYER OBJECT
-	Player player = new Player(400, 500, 0);
+	// PLAYER OBJECT
+	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
 	// GamePanel Constructor
-	
-			GamePanel() {
+
+	GamePanel() {
 		titleFont = new Font("Roboto", Font.PLAIN, 72);
 		titleFontTwo = new Font("Roboto", Font.CENTER_BASELINE, 24);
 		frameDraw = new Timer(1000 / 60, this);
@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void updateGameState() {
-
+		objectManager.update();
 	}
 
 	void updateEndState() {
@@ -77,8 +77,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void drawGameState(Graphics g) {
 		objectManager.draw(g);
-		
-	
+
 	}
 
 	void drawEndState(Graphics g) {
@@ -107,43 +106,56 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == GAME) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("UP");
-				if (player.y > 0) {
-					player.up();
-				}
-				}
+
+				player.up=true;
+			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("DOWN");
-				if (player.y < Escape.HEIGHT - player.height) {
-					player.down();
-				}
+				player.down=true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("LEFT");
-				if (player.x > 0) {
-					player.left();
-				}
+				player.left=true;
+
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("RIGHT");
-				if (player.x < Escape.WIDTH+25- player.width)
-					player.right();
+				player.right=true;
+
 			}
-
-			
+			// temporary code for switching screens
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				currentState = MENU;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				currentState = GAME;
+			}
 		}
-		// temporary code for switching screens
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState = MENU;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			currentState = GAME;
-		}
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if (currentState == GAME) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				System.out.println("UP");
 
+				player.up=false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				System.out.println("DOWN");
+				player.down=false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				System.out.println("LEFT");
+				player.left=false;
+
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				System.out.println("RIGHT");
+				player.right=false;
+
+			}
+		}
 	}
 
 	@Override
