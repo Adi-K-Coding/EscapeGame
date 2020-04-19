@@ -104,21 +104,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");
 
 				player.up=true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if (e.getKeyCode() == KeyEvent.VK_S) {
 				System.out.println("DOWN");
 				player.down=true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (e.getKeyCode() == KeyEvent.VK_A) {
 				System.out.println("LEFT");
 				player.left=true;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (e.getKeyCode() == KeyEvent.VK_D) {
 				System.out.println("RIGHT");
 				player.right=true;
 
@@ -136,21 +136,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");
 
 				player.up=false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if (e.getKeyCode() == KeyEvent.VK_S) {
 				System.out.println("DOWN");
 				player.down=false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (e.getKeyCode() == KeyEvent.VK_A) {
 				System.out.println("LEFT");
 				player.left=false;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (e.getKeyCode() == KeyEvent.VK_D) {
 				System.out.println("RIGHT");
 				player.right=false;
 

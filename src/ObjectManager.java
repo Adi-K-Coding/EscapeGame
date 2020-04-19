@@ -16,15 +16,26 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void addPlatform() {
-		platforms.add(new Platform(0, 500, 800, 20));
-		platforms.add(new Platform(400, 300, 200, 20));
+		// Code For New Platform: platforms.add(new Platform(x, y, width, height));
+		platforms.add(new Platform(100, 500, 500, 600));
+		platforms.add(new Platform(500, 350, 200, 20));
+		platforms.add(new Platform(750, 500, 200, 600));
+		platforms.add(new Platform(1100, 500, 200, 600));
+		platforms.add(new Platform(1450, 500, 200, 600));
+		platforms.add(new Platform(1600, 400, 100, 20));
+		platforms.add(new Platform(1750, 300, 100, 20));
+		platforms.add(new Platform(1900, 200, 100, 20));
+		platforms.add(new Platform(2000, 500, 100, 600));
+		platforms.add(new Platform(2110, 400, 100, 700));
+		platforms.add(new Platform(2220, 300, 100, 800));
+		platforms.add(new Platform(2330, 200, 100, 900));
 	}
 
 	void draw(Graphics g) {
 		player.draw(g);
 		for (int i = 0; i < platforms.size(); i++) {
 			platforms.get(i).draw(g);
-			g.setColor(Color.ORANGE);
+			g.setColor(Color.BLUE);
 			g.drawRect(platforms.get(i).collisionBox.x, platforms.get(i).collisionBox.y,
 					platforms.get(i).collisionBox.width, platforms.get(i).collisionBox.height);
 		}
@@ -45,9 +56,12 @@ public class ObjectManager implements ActionListener {
 	}
 
 	public static boolean isGoingToCollide(int dx, int dy) {
+		Rectangle playerPredictPostition = new Rectangle(player.collisionBox.x + dx, player.collisionBox.y + dy,
+				player.collisionBox.width, player.collisionBox.height);
 		for (int k = 0; k < platforms.size(); k++) {
-			if (player.collisionBox.intersects(platforms.get(k).collisionBox)) {
-				System.out.println("it works");
+			if (playerPredictPostition.intersects(platforms.get(k).collisionBox)) {
+				System.out.println("Player and Platform Collided");
+				player.velocity = 0;
 				return true;
 			}
 		}

@@ -8,6 +8,8 @@ public class Player extends GameObject {
 	boolean down;
 	boolean left;
 	boolean right;
+	double gravity = 1;
+	double velocity = 0;
 
 	Player(int x, int y, int direction) {
 		super(x, y, 50, 80);
@@ -21,14 +23,16 @@ public class Player extends GameObject {
 	}
 
 	void update() {
+		velocity += gravity;
 		int dx = 0;
-		int dy = 0;
+		int dy = (int) velocity;
 		collisionBox.setBounds(350, 220, width, height);
-		if (up) {
-			dy = -speed;
+		if (up&&ObjectManager.isGoingToCollide(0, 1) == true) {
+			velocity=-speed*4;
+			dy = (int) velocity;
 		}
 		if (down) {
-			dy = speed;
+			dy += speed;
 		}
 		if (left) {
 			dx = -speed;
@@ -36,9 +40,11 @@ public class Player extends GameObject {
 		if (right) {
 			dx = speed;
 		}
-		if(ObjectManager.isGoingToCollide(dx,dy)==false) {
-			this.x+=dx;
-			this.y+=dy;
+		if (ObjectManager.isGoingToCollide(0, dy) == false) {
+			this.y += dy;
+		}
+		if (ObjectManager.isGoingToCollide(dx, 0) == false) {
+			this.x += dx;
 		}
 	}
 }
