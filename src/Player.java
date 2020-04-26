@@ -27,13 +27,13 @@ public class Player extends GameObject {
 		int dx = 0;
 		int dy = (int) velocity;
 		collisionBox.setBounds(350, 220, width, height);
-		if (up&&ObjectManager.isGoingToCollide(0, 1) == true) {
-			velocity=-speed*4;
+		if (up && ObjectManager.isGoingToCollide(0, 1) == true) {
+			velocity = -speed * 4;
 			dy = (int) velocity;
 		}
-		if (down) {
-			dy += speed;
-		}
+//		if (down||up) {
+//			dy += velocity;
+//		}
 		if (left) {
 			dx = -speed;
 		}

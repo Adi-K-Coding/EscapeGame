@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
+
 	// GamePanel Constructor
 
 	GamePanel() {
@@ -107,20 +108,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");
 
-				player.up=true;
+				player.up = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_S) {
 				System.out.println("DOWN");
-				player.down=true;
+				player.down = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
 				System.out.println("LEFT");
-				player.left=true;
+				player.left = true;
 
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
 				System.out.println("RIGHT");
-				player.right=true;
+				player.right = true;
 
 			}
 			// temporary code for switching screens
@@ -131,6 +132,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				currentState = GAME;
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_1) {
+			objectManager.levelNumber = 1;
+			objectManager.addPlatform(1);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_2) {
+			objectManager.levelNumber = 2;
+			objectManager.addPlatform(2);
+		}
+
 	}
 
 	@Override
@@ -139,20 +149,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");
 
-				player.up=false;
+				player.up = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_S) {
 				System.out.println("DOWN");
-				player.down=false;
+				player.down = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
 				System.out.println("LEFT");
-				player.left=false;
+				player.left = false;
 
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
 				System.out.println("RIGHT");
-				player.right=false;
+				player.right = false;
 
 			}
 		}
