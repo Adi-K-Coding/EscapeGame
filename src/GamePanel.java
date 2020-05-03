@@ -81,6 +81,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	void drawGameState(Graphics g) {
 		objectManager.draw(g);
 		if (objectManager.levelNumber == 0) {
+			g.setColor(Color.darkGray);
+			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
 			nextLevelButton.draw(g);
 		}
 	}
@@ -144,7 +146,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			objectManager.levelNumber = 2;
 			objectManager.addPlatform(2);
 		}
-
+		if (e.getKeyCode() == KeyEvent.VK_3) {
+			objectManager.levelNumber = 3;
+			objectManager.addPlatform(3);
+		}
 	}
 
 	@Override
@@ -188,13 +193,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 						+ "Use your mouse to aim and use press KEY to shoot. ");
 			}
 		}
-		if (currentState == GAME) {
+		if (currentState == GAME && objectManager.levelNumber == 0) {
 			if (nextLevelButton.isOnButton(e.getX(), e.getY())) {
-				objectManager.levelNumber = 0;
-				objectManager.levelNumber = objectManager.levelNumber + 1;
+				objectManager.levelNumber = 1;
+				objectManager.levelNumber = objectManager.previousLevelNumber + 1;
 				objectManager.addPlatform(objectManager.levelNumber);
-			//problem is that everytime transitionlevel is called(level 0) and i try to switch back to next level when
-				//i click next level button, it takes me back to level one
+
 			}
 		}
 	}

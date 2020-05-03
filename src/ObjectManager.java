@@ -11,6 +11,7 @@ public class ObjectManager implements ActionListener {
 	public static Player player;
 	public static EndObject endObject;
 	int levelNumber = 1;
+	int previousLevelNumber = 1;
 
 	ObjectManager(Player player) {
 		ObjectManager.player = player;
@@ -36,10 +37,13 @@ public class ObjectManager implements ActionListener {
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
+		platforms.add(new Platform(100, 0, 10, 1000));
+		platforms.add(new Platform(600, 0, 10, 1000));
 	}
 
 	void levelOnePlatforms() {
 		platforms.clear();
+		previousLevelNumber = 1;
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
@@ -63,6 +67,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelTwoPlatforms() {
 		platforms.clear();
+		previousLevelNumber = 2;
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
@@ -78,13 +83,36 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(2100, 100, 100, 20));
 		platforms.add(new Platform(1850, -50, 100, 20));
 		platforms.add(new Platform(2100, -200, 100, 20));
-		platforms.add(new Platform(2300, -200, 0, 0));
+		platforms.add(new Platform(2300, -200, 200, 20));
+		platforms.add(new Platform(2500, -100, 50, 20));
+		platforms.add(new Platform(2700, 0, 50, 20));
+		platforms.add(new Platform(2900, 100, 50, 20));
+		platforms.add(new Platform(3100, 200, 50, 20));
+		platforms.add(new Platform(2900, 400, 200, 20));
+		platforms.add(new Platform(2700, 500, 100, 20));
+		endObject = new EndObject(2725, 450, 50, 50);
 	}
 
 	void levelThreePlatforms() {
 		platforms.clear();
+		previousLevelNumber = 3;
 		player.x = 0;
 		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
+		platforms.add(new Platform(700, 350, 100, 750));
+		platforms.add(new Platform(900, 200, 100, 900));
+		platforms.add(new Platform(1100, 50, 100, 1050));
+		platforms.add(new Platform(1300, -100, 100, 1200));
+		platforms.add(new Platform(1500, -200, 100, 20));
+		platforms.add(new Platform(1700, -100, 100, 20));
+		platforms.add(new Platform(1900, -200, 100, 20));
+		platforms.add(new Platform(2100, -100, 100, 20));
+		platforms.add(new Platform(2300, -200, 100, 20));
+		platforms.add(new Platform(2500, -100, 100, 20));
+		platforms.add(new Platform(2700, 100, 100, 20));
+		platforms.add(new Platform(2500, 300, 100, 20));
+		platforms.add(new Platform(2700, 500, 100, 20));
+
 	}
 
 	void draw(Graphics g) {
@@ -114,9 +142,9 @@ public class ObjectManager implements ActionListener {
 			}
 		}
 		if (endObject.collisionBox.intersects(player.collisionBox)) {
-			 //levelNumber++;
+			// levelNumber++;
 			levelNumber = 0;
-			 addPlatform(levelNumber);
+			addPlatform(levelNumber);
 		}
 	}
 
@@ -126,7 +154,9 @@ public class ObjectManager implements ActionListener {
 		for (int k = 0; k < platforms.size(); k++) {
 			if (playerPredictPostition.intersects(platforms.get(k).collisionBox)) {
 				// System.out.println("Player and Platform Collided");
+				if(dx==0) {
 				player.velocity = 0;
+				}
 				return true;
 			}
 		}

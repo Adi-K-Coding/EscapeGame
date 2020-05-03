@@ -31,9 +31,6 @@ public class Player extends GameObject {
 			velocity = -speed * 4;
 			dy = (int) velocity;
 		}
-//		if (down||up) {
-//			dy += velocity;
-//		}
 		if (left) {
 			dx = -speed;
 		}
