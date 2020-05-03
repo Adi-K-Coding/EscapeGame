@@ -19,7 +19,9 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void addPlatform(int level) {
-		if (level == 1) {
+		if (level == 0) {
+			transitionLevel();
+		} else if (level == 1) {
 			levelOnePlatforms();
 		} else if (level == 2) {
 			levelTwoPlatforms();
@@ -27,6 +29,13 @@ public class ObjectManager implements ActionListener {
 			levelThreePlatforms();
 		}
 
+	}
+
+	void transitionLevel() {
+		platforms.clear();
+		player.x = 0;
+		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
 	}
 
 	void levelOnePlatforms() {
@@ -58,7 +67,18 @@ public class ObjectManager implements ActionListener {
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 500, 200, 600));
+		platforms.add(new Platform(1050, 600, 50, 500));
 		platforms.add(new Platform(1200, 500, 200, 600));
+		platforms.add(new Platform(1550, 600, 50, 500));
+		platforms.add(new Platform(1700, 500, 550, 500));
+		platforms.add(new Platform(1800, -200, 50, 470));
+		platforms.add(new Platform(2200, -200, 50, 700));
+		platforms.add(new Platform(2100, 400, 100, 20));
+		platforms.add(new Platform(1850, 250, 100, 20));
+		platforms.add(new Platform(2100, 100, 100, 20));
+		platforms.add(new Platform(1850, -50, 100, 20));
+		platforms.add(new Platform(2100, -200, 100, 20));
+		platforms.add(new Platform(2300, -200, 0, 0));
 	}
 
 	void levelThreePlatforms() {
@@ -94,9 +114,9 @@ public class ObjectManager implements ActionListener {
 			}
 		}
 		if (endObject.collisionBox.intersects(player.collisionBox)) {
-			levelNumber++;
-
-			addPlatform(levelNumber);
+			 //levelNumber++;
+			levelNumber = 0;
+			 addPlatform(levelNumber);
 		}
 	}
 

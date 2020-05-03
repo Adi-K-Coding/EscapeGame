@@ -11,6 +11,7 @@ public class Platform extends GameObject {
 	void draw(Graphics g) {
 		g.setColor(Color.GREEN);
 		g.fillRect(x - ObjectManager.player.x, y - ObjectManager.player.y, width, height);
+	
 	}
 	void update() {
 		super.update();
