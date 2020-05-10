@@ -32,17 +32,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFontTwo;
 	Timer frameDraw;
 	// BUTTONS ON MENU
-	GameButton startButton = new GameButton(272, 250, "Start", 367,250);
-	GameButton ccButton = new GameButton(272, 300, "Change Character", 285,250);
-	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321,250);
+	GameButton startButton = new GameButton(272, 250, "Start", 367, 250);
+	GameButton ccButton = new GameButton(272, 300, "Change Character", 285, 250);
+	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321, 250);
 	// BUTTONS IN-GAME
-	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367,250);
-	GameButton levelOneButton = new GameButton(50, 300, "Level One", 367,200);
-	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367,200);
-	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 367,200);
-	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 367,200);
-	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367,200);
-	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 367,200);
+	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367, 250);
+	GameButton levelOneButton = new GameButton(50, 300, "Level One", 121, 200);
+	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367, 200);
+	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 617, 200);
+	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 119, 200);
+	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200);
+	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -228,7 +228,30 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				objectManager.levelNumber = 1;
 				objectManager.levelNumber = objectManager.previousLevelNumber + 1;
 				objectManager.createLevel(objectManager.levelNumber);
-
+			}
+			if (levelOneButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 1;
+				objectManager.createLevel(objectManager.levelNumber);
+			}
+			if (levelTwoButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 2;
+				objectManager.createLevel(objectManager.levelNumber);
+			}
+			if (levelThreeButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 3;
+				objectManager.createLevel(objectManager.levelNumber);
+			}
+			if (levelFourButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 4;
+				objectManager.createLevel(objectManager.levelNumber);
+			}
+			if (levelFiveButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 5;
+				objectManager.createLevel(objectManager.levelNumber);
+			}
+			if (levelSixButton.isOnButton(e.getX(), e.getY())) {
+				objectManager.levelNumber = 6;
+				objectManager.createLevel(objectManager.levelNumber);
 			}
 		}
 	}
