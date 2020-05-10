@@ -32,11 +32,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFontTwo;
 	Timer frameDraw;
 	// BUTTONS ON MENU
-	GameButton startButton = new GameButton(272, 250, "Start", 367);
-	GameButton ccButton = new GameButton(272, 300, "Change Character", 285);
-	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321);
+	GameButton startButton = new GameButton(272, 250, "Start", 367,250);
+	GameButton ccButton = new GameButton(272, 300, "Change Character", 285,250);
+	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321,250);
 	// BUTTONS IN-GAME
-	GameButton nextLevelButton = new GameButton(272, 250, "Next Level", 367);
+	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367,250);
+	GameButton levelOneButton = new GameButton(50, 300, "Level One", 367,200);
+	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367,200);
+	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 367,200);
+	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 367,200);
+	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367,200);
+	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 367,200);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -81,9 +87,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	void drawGameState(Graphics g) {
 		objectManager.draw(g);
 		if (objectManager.levelNumber == 0) {
+			// drawing all transition state buttons
 			g.setColor(Color.darkGray);
 			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
 			nextLevelButton.draw(g);
+			levelOneButton.draw(g);
+			levelTwoButton.draw(g);
+			levelThreeButton.draw(g);
+			levelFourButton.draw(g);
+			levelFiveButton.draw(g);
+			levelSixButton.draw(g);
+
 		}
 	}
 
@@ -138,17 +152,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				currentState = GAME;
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_0) {
+			objectManager.levelNumber = 0;
+			objectManager.createLevel(0);
+		}
 		if (e.getKeyCode() == KeyEvent.VK_1) {
 			objectManager.levelNumber = 1;
-			objectManager.addPlatform(1);
+			objectManager.createLevel(1);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_2) {
 			objectManager.levelNumber = 2;
-			objectManager.addPlatform(2);
+			objectManager.createLevel(2);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_3) {
 			objectManager.levelNumber = 3;
-			objectManager.addPlatform(3);
+			objectManager.createLevel(3);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_4) {
+			objectManager.levelNumber = 4;
+			objectManager.createLevel(4);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_5) {
+			objectManager.levelNumber = 5;
+			objectManager.createLevel(5);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_6) {
+			objectManager.levelNumber = 6;
+			objectManager.createLevel(6);
 		}
 	}
 
@@ -197,7 +227,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (nextLevelButton.isOnButton(e.getX(), e.getY())) {
 				objectManager.levelNumber = 1;
 				objectManager.levelNumber = objectManager.previousLevelNumber + 1;
-				objectManager.addPlatform(objectManager.levelNumber);
+				objectManager.createLevel(objectManager.levelNumber);
 
 			}
 		}

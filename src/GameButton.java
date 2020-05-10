@@ -5,13 +5,10 @@ public class GameButton extends GameObject {
 	String text;
 	int textx;
 
-	GameButton(int x, int y, String text, int textx) {
-		super(x,y,250,40);
-		this.x = x;
-		this.y = y;
+	GameButton(int x, int y, String text, int textx, int width) {
+		super(x, y, width, 40);
 		this.text = text;
 		this.textx = textx;
-		
 
 	}
 

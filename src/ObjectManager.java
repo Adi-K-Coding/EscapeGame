@@ -15,11 +15,11 @@ public class ObjectManager implements ActionListener {
 
 	ObjectManager(Player player) {
 		ObjectManager.player = player;
-		addPlatform(1);
+		createLevel(1);
 
 	}
 
-	void addPlatform(int level) {
+	void createLevel(int level) {
 		if (level == 0) {
 			transitionLevel();
 		} else if (level == 1) {
@@ -28,6 +28,12 @@ public class ObjectManager implements ActionListener {
 			levelTwoPlatforms();
 		} else if (level == 3) {
 			levelThreePlatforms();
+		} else if (level == 4) {
+			levelFourPlatforms();
+		} else if (level == 5) {
+			levelFivePlatforms();
+		} else if (level == 6) {
+			levelSixPlatforms();
 		}
 
 	}
@@ -115,10 +121,36 @@ public class ObjectManager implements ActionListener {
 
 	}
 
+	void levelFourPlatforms() {
+		platforms.clear();
+		previousLevelNumber = 4;
+		player.x = 0;
+		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
+
+	}
+
+	void levelFivePlatforms() {
+		platforms.clear();
+		previousLevelNumber = 5;
+		player.x = 0;
+		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
+	}
+
+	void levelSixPlatforms() {
+		platforms.clear();
+		previousLevelNumber = 6;
+		player.x = 0;
+		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
+	}
+
 	void draw(Graphics g) {
 		player.draw(g);
 		for (int i = 0; i < platforms.size(); i++) {
 			platforms.get(i).draw(g);
+			// outline for platforms
 			// g.setColor(Color.BLUE);
 			// g.drawRect(platforms.get(i).collisionBox.x, platforms.get(i).collisionBox.y,
 			// platforms.get(i).collisionBox.width, platforms.get(i).collisionBox.height);
@@ -144,7 +176,7 @@ public class ObjectManager implements ActionListener {
 		if (endObject.collisionBox.intersects(player.collisionBox)) {
 			// levelNumber++;
 			levelNumber = 0;
-			addPlatform(levelNumber);
+			createLevel(levelNumber);
 		}
 	}
 
@@ -154,8 +186,8 @@ public class ObjectManager implements ActionListener {
 		for (int k = 0; k < platforms.size(); k++) {
 			if (playerPredictPostition.intersects(platforms.get(k).collisionBox)) {
 				// System.out.println("Player and Platform Collided");
-				if(dx==0) {
-				player.velocity = 0;
+				if (dx == 0) {
+					player.velocity = 0;
 				}
 				return true;
 			}
