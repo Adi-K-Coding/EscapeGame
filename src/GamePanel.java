@@ -225,7 +225,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				System.out.println("Instructions");
 				JOptionPane.showMessageDialog(null, "Move your character using the arrow keys.\n"
 						+ "Use your mouse to aim and use press KEY to shoot.\n"
-						+ "Don't touch the spikes(red) and don't fall of the platform(green)");
+						+ "Don't touch the spikes(red) and don't fall of the platforms(green)");
 			}
 		}
 		if (currentState == GAME && objectManager.levelNumber == 0) {
