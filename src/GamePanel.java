@@ -97,7 +97,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			levelFourButton.draw(g);
 			levelFiveButton.draw(g);
 			levelSixButton.draw(g);
-
+		}
+		if (objectManager.levelNumber != 0) {
+			g.setColor(Color.GRAY);
+			g.setFont(titleFontTwo);
+			g.drawString("Level " + objectManager.levelNumber, 10, 30);
 		}
 	}
 
@@ -220,7 +224,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (instructionButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Instructions");
 				JOptionPane.showMessageDialog(null, "Move your character using the arrow keys.\n"
-						+ "Use your mouse to aim and use press KEY to shoot. ");
+						+ "Use your mouse to aim and use press KEY to shoot.\n"
+						+ "Don't touch the spikes(red) and don't fall of the platform(green)");
 			}
 		}
 		if (currentState == GAME && objectManager.levelNumber == 0) {

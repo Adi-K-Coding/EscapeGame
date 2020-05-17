@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class ObjectManager implements ActionListener {
 
 	static ArrayList<Platform> platforms = new ArrayList<Platform>();
+	static ArrayList<Spike> spikes = new ArrayList<Spike>();
 	public static Player player;
 	public static EndObject endObject;
 	int levelNumber = 1;
@@ -105,6 +106,22 @@ public class ObjectManager implements ActionListener {
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
+		platforms.add(new Platform(700, 500, 100, 600));
+		platforms.add(new Platform(900, 300, 100, 600));
+		platforms.add(new Platform(1100, 100, 100, 600));
+		//spiral
+		
+		// platforms.add(new Platform(, 300, 100, 600));
+
+		endObject = new EndObject(2725, 450, 50, 50);
+	}
+
+	void levelFourPlatforms() {
+		platforms.clear();
+		previousLevelNumber = 4;
+		player.x = 0;
+		player.y = 0;
+		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 350, 100, 750));
 		platforms.add(new Platform(900, 200, 100, 900));
 		platforms.add(new Platform(1100, 50, 100, 1050));
@@ -118,16 +135,7 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(2700, 100, 100, 20));
 		platforms.add(new Platform(2500, 300, 100, 20));
 		platforms.add(new Platform(2700, 500, 100, 20));
-
-	}
-
-	void levelFourPlatforms() {
-		platforms.clear();
-		previousLevelNumber = 4;
-		player.x = 0;
-		player.y = 0;
-		platforms.add(new Platform(100, 500, 500, 600));
-
+		endObject = new EndObject(2725, 450, 50, 50);
 	}
 
 	void levelFivePlatforms() {
@@ -136,6 +144,21 @@ public class ObjectManager implements ActionListener {
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
+		platforms.add(new Platform(700, 500, 500, 600));
+		platforms.add(new Platform(1300, 500, 100, 600));// THRU 1-JUMP PLATFORM
+		platforms.add(new Platform(1475, -400, 50, 550));// THRU 1- UP TUBE
+		spikes.add(new Spike(1475,150,50,50));
+		spikes.add(new Spike(1475,400,50,50));
+		platforms.add(new Platform(1475, 450, 50, 600));// THRU 1- DOWN TUBE
+		platforms.add(new Platform(1600, 500, 100, 600));// THRU 1- RECEIVE PLATFORM;THRU 2-JUMP PLATFORM
+		platforms.add(new Platform(1775, -400, 50, 550));// THRU 2- UP TUBE
+		platforms.add(new Platform(1775, 450, 50, 600));// THRU 2- DOWN TUBE
+		platforms.add(new Platform(1900, 500, 100, 600));// THRU 2- RECEIVE PLATFORM;THRU 3-JUMP PLATFORM
+		platforms.add(new Platform(2075, -400, 50, 550));// THRU 3- UP TUBE
+		platforms.add(new Platform(2075, 450, 50, 600));// THRU 3- DOWN TUBE
+		platforms.add(new Platform(2200, 500, 100, 600));// THRU 3- RECEIVE PLATFORM;THRU 4-JUMP PLATFORM
+
+		// endObject = new EndObject(2725, 450, 50, 50);
 	}
 
 	void levelSixPlatforms() {
@@ -144,6 +167,7 @@ public class ObjectManager implements ActionListener {
 		player.x = 0;
 		player.y = 0;
 		platforms.add(new Platform(100, 500, 500, 600));
+		endObject = new EndObject(2725, 450, 50, 50);
 	}
 
 	void draw(Graphics g) {
@@ -154,6 +178,9 @@ public class ObjectManager implements ActionListener {
 			// g.setColor(Color.BLUE);
 			// g.drawRect(platforms.get(i).collisionBox.x, platforms.get(i).collisionBox.y,
 			// platforms.get(i).collisionBox.width, platforms.get(i).collisionBox.height);
+		}
+		for (int n = 0; n < spikes.size(); n++) {
+			spikes.get(n).draw(g);
 		}
 		g.setColor(Color.BLACK);
 		g.drawRect(player.collisionBox.x, player.collisionBox.y, player.collisionBox.width, player.collisionBox.height);
@@ -204,6 +231,9 @@ public class ObjectManager implements ActionListener {
 		player.update();
 		for (int j = 0; j < platforms.size(); j++) {
 			platforms.get(j).update();
+		}
+		for (int m = 0; m < spikes.size(); m++) {
+			spikes.get(m).update();
 		}
 		checkCollisions();
 		endObject.update();
