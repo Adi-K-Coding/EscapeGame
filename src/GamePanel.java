@@ -43,6 +43,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 119, 200);
 	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200);
 	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200);
+	// BUTTONS ON END-STATE
+	GameButton levelSelectButton= new GameButton(330,350,"Level Select", 526,200);
+	GameButton replayLevel= new GameButton(330,350,"replayLevel", 526,200);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -62,6 +65,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void updateGameState() {
 		objectManager.update();
+		if (player.isActive == false) {
+			currentState = END; 
+		}
 	}
 
 	void updateEndState() {
@@ -106,7 +112,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void drawEndState(Graphics g) {
-
+	if(objectManager.player.isActive==true) {
+		g.setColor(Color.cyan);
+		g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
+	//buttons
+	}else {
+		g.setColor(Color.cyan);
+		g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
+	//Buttons
+	}
+		
+	
 	}
 
 	@Override

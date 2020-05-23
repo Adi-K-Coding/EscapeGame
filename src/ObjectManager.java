@@ -109,8 +109,8 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(700, 500, 100, 600));
 		platforms.add(new Platform(900, 300, 100, 600));
 		platforms.add(new Platform(1100, 100, 100, 600));
-		//spiral
-		
+		// spiral
+
 		// platforms.add(new Platform(, 300, 100, 600));
 
 		endObject = new EndObject(2725, 450, 50, 50);
@@ -147,8 +147,8 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(700, 500, 500, 600));
 		platforms.add(new Platform(1300, 500, 100, 600));// THRU 1-JUMP PLATFORM
 		platforms.add(new Platform(1475, -400, 50, 550));// THRU 1- UP TUBE
-		spikes.add(new Spike(1475,150,50,50));
-		spikes.add(new Spike(1475,400,50,50));
+		spikes.add(new Spike(1475, 150, 50, 50));
+		spikes.add(new Spike(1475, 400, 50, 50));
 		platforms.add(new Platform(1475, 450, 50, 600));// THRU 1- DOWN TUBE
 		platforms.add(new Platform(1600, 500, 100, 600));// THRU 1- RECEIVE PLATFORM;THRU 2-JUMP PLATFORM
 		platforms.add(new Platform(1775, -400, 50, 550));// THRU 2- UP TUBE
@@ -204,6 +204,12 @@ public class ObjectManager implements ActionListener {
 			// levelNumber++;
 			levelNumber = 0;
 			createLevel(levelNumber);
+		}
+		for (int o = 0; o < spikes.size(); o++) {
+
+			if (player.collisionBox.intersects(spikes.get(o).collisionBox)) {
+				player.isActive=false;
+			}
 		}
 	}
 
