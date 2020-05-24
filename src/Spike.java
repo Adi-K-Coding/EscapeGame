@@ -4,14 +4,18 @@ import java.awt.Graphics;
 public class Spike extends GameObject {
 	public int collisionState = 0;
 
-	Spike(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	boolean isVisible;
 
+	Spike(int x, int y, int width, int height, boolean isVisible) {
+		super(x, y, width, height);
+		this.isVisible = isVisible;
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(x - ObjectManager.player.x, y - ObjectManager.player.y, width, height);
+		if (isVisible == true) {
+			g.setColor(Color.RED);
+			g.fillRect(x - ObjectManager.player.x, y - ObjectManager.player.y, width, height);
+		}
 	}
 
 	void update() {

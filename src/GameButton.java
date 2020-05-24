@@ -23,7 +23,7 @@ public class GameButton extends GameObject {
 
 	void draw(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.drawString(text, textx, y + 30);
-		g.drawRoundRect(x, y, width, height, 10, 10);
+		g.drawString(text, textx, y + 29);
+		g.drawRoundRect(x, y, width, height, 10, 70);
 	}
 }

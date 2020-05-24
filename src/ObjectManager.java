@@ -143,20 +143,46 @@ public class ObjectManager implements ActionListener {
 		previousLevelNumber = 5;
 		player.x = 0;
 		player.y = 0;
+		spikes.add(new Spike(0, 5000, 5500, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 500, 500, 600));
 		platforms.add(new Platform(1300, 500, 100, 600));// THRU 1-JUMP PLATFORM
 		platforms.add(new Platform(1475, -400, 50, 550));// THRU 1- UP TUBE
-		spikes.add(new Spike(1475, 150, 50, 50));
-		spikes.add(new Spike(1475, 400, 50, 50));
+		spikes.add(new Spike(1475, 150, 50, 50, true));
+		spikes.add(new Spike(1475, 400, 50, 50, true));
 		platforms.add(new Platform(1475, 450, 50, 600));// THRU 1- DOWN TUBE
 		platforms.add(new Platform(1600, 500, 100, 600));// THRU 1- RECEIVE PLATFORM;THRU 2-JUMP PLATFORM
 		platforms.add(new Platform(1775, -400, 50, 550));// THRU 2- UP TUBE
+		spikes.add(new Spike(1775, 150, 50, 50, true));
+		spikes.add(new Spike(1775, 400, 50, 50, true));
 		platforms.add(new Platform(1775, 450, 50, 600));// THRU 2- DOWN TUBE
 		platforms.add(new Platform(1900, 500, 100, 600));// THRU 2- RECEIVE PLATFORM;THRU 3-JUMP PLATFORM
 		platforms.add(new Platform(2075, -400, 50, 550));// THRU 3- UP TUBE
+		spikes.add(new Spike(2075, 150, 50, 50, true));
+		spikes.add(new Spike(2075, 400, 50, 50, true));
 		platforms.add(new Platform(2075, 450, 50, 600));// THRU 3- DOWN TUBE
 		platforms.add(new Platform(2200, 500, 100, 600));// THRU 3- RECEIVE PLATFORM;THRU 4-JUMP PLATFORM
+		platforms.add(new Platform(2500, 400, 100, 600));
+		platforms.add(new Platform(2800, 300, 100, 700));
+		platforms.add(new Platform(3100, 200, 100, 800));
+		platforms.add(new Platform(3300, 200, 200, 800));
+//change all y values for below platforms
+		platforms.add(new Platform(3500, 500, 100, 600));// THRU 1-JUMP PLATFORM
+		platforms.add(new Platform(3675, -400, 50, 550));// THRU 1- UP TUBE
+		spikes.add(new Spike(3675, 150, 50, 50, true));
+		spikes.add(new Spike(3675, 400, 50, 50, true));
+		platforms.add(new Platform(3675, 450, 50, 600));// THRU 1- DOWN TUBE
+		platforms.add(new Platform(3800, 500, 100, 600));// THRU 1- RECEIVE PLATFORM;THRU 2-JUMP PLATFORM
+		platforms.add(new Platform(3975, -400, 50, 550));// THRU 2- UP TUBE
+		spikes.add(new Spike(3975, 150, 50, 50, true));
+		spikes.add(new Spike(3975, 400, 50, 50, true));
+		platforms.add(new Platform(3975, 450, 50, 600));// THRU 2- DOWN TUBE
+		platforms.add(new Platform(4100, 500, 100, 600));// THRU 2- RECEIVE PLATFORM;THRU 3-JUMP PLATFORM
+		platforms.add(new Platform(4275, -400, 50, 550));// THRU 3- UP TUBE
+		spikes.add(new Spike(4275, 150, 50, 50, true));
+		spikes.add(new Spike(4275, 400, 50, 50, true));
+		platforms.add(new Platform(4275, 450, 50, 600));// THRU 3- DOWN TUBE
+		platforms.add(new Platform(2400, 500, 100, 600));// THRU 3- RECEIVE PLATFORM;THRU 4-JUMP PLATFORM
 
 		// endObject = new EndObject(2725, 450, 50, 50);
 	}
@@ -208,7 +234,7 @@ public class ObjectManager implements ActionListener {
 		for (int o = 0; o < spikes.size(); o++) {
 
 			if (player.collisionBox.intersects(spikes.get(o).collisionBox)) {
-				player.isActive=false;
+				player.isAlive = false;
 			}
 		}
 	}

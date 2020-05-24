@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321, 250);
 	// BUTTONS IN-GAME
 	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367, 250);
+	GameButton bTMButton = new GameButton(10, 10, "Menu", 14, 40);
 	GameButton levelOneButton = new GameButton(50, 300, "Level One", 121, 200);
 	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367, 200);
 	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 617, 200);
@@ -44,8 +45,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200);
 	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200);
 	// BUTTONS ON END-STATE
-	GameButton levelSelectButton= new GameButton(330,350,"Level Select", 526,200);
-	GameButton replayLevel= new GameButton(330,350,"replayLevel", 526,200);
+	GameButton levelSelectButton = new GameButton(330, 350, "Level Select", 526, 200);
+	// Menu Button From Above
+	GameButton replayLevel = new GameButton(330, 350, "replayLevel", 526, 200);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -65,8 +67,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void updateGameState() {
 		objectManager.update();
-		if (player.isActive == false) {
-			currentState = END; 
+		if (player.isAlive == false) {
+			currentState = END;
 		}
 	}
 
@@ -97,6 +99,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.setColor(Color.darkGray);
 			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
 			nextLevelButton.draw(g);
+			bTMButton.draw(g);
 			levelOneButton.draw(g);
 			levelTwoButton.draw(g);
 			levelThreeButton.draw(g);
@@ -112,17 +115,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void drawEndState(Graphics g) {
-	if(objectManager.player.isActive==true) {
-		g.setColor(Color.cyan);
-		g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
-	//buttons
-	}else {
-		g.setColor(Color.cyan);
-		g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
-	//Buttons
-	}
-		
-	
+		if (objectManager.player.isAlive == true) {
+			g.setColor(Color.cyan);
+			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
+			bTMButton.draw(g);
+		} else {
+			g.setColor(Color.cyan);
+			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
+			bTMButton.draw(g);
+		}
+
 	}
 
 	@Override
@@ -231,17 +233,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void mouseClicked(MouseEvent e) {
 		if (currentState == MENU) {
 			if (startButton.isOnButton(e.getX(), e.getY())) {
+//				objectManager.levelNumber = 1;
+//				objectManager.createLevel(objectManager.levelNumber);
 				currentState = GAME;
 				System.out.println("Start");
+				
 			}
 			if (ccButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Change Character");
 			}
 			if (instructionButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Instructions");
-				JOptionPane.showMessageDialog(null, "Move your character using the arrow keys.\n"
-						+ "Use your mouse to aim and use press KEY to shoot.\n"
-						+ "Don't touch the spikes(red) and don't fall of the platforms(green)");
+				JOptionPane.showMessageDialog(null,
+						"Move your character using the arrow keys.\n"
+								+ "Use your mouse to aim and use press KEY to shoot.\n"
+								+ "Don't touch the spikes(red) and don't fall of the platforms(green)");
 			}
 		}
 		if (currentState == GAME && objectManager.levelNumber == 0) {
@@ -275,6 +281,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				objectManager.createLevel(objectManager.levelNumber);
 			}
 		}
+		if (currentState == GAME && objectManager.levelNumber == 0||(currentState==END)); {
+			if (bTMButton.isOnButton(e.getX(), e.getY())) {
+				currentState = MENU;
+			}
+
+		}
+
 	}
 
 	@Override
