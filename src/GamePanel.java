@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321, 250);
 	// BUTTONS IN-GAME
 	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367, 250);
-	GameButton bTMButton = new GameButton(10, 10, "Menu", 14, 40);
+	GameButton bTMButton = new GameButton(550, 10, "Menu", 554, 40);
 	GameButton levelOneButton = new GameButton(50, 300, "Level One", 121, 200);
 	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367, 200);
 	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 617, 200);
@@ -233,11 +233,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void mouseClicked(MouseEvent e) {
 		if (currentState == MENU) {
 			if (startButton.isOnButton(e.getX(), e.getY())) {
-//				objectManager.levelNumber = 1;
-//				objectManager.createLevel(objectManager.levelNumber);
+			objectManager.levelNumber = 1;
+			objectManager.createLevel(objectManager.levelNumber);
 				currentState = GAME;
 				System.out.println("Start");
-				
+				objectManager.player.isAlive=true;
 			}
 			if (ccButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Change Character");
@@ -281,7 +281,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				objectManager.createLevel(objectManager.levelNumber);
 			}
 		}
-		if (currentState == GAME && objectManager.levelNumber == 0||(currentState==END)); {
+		if (currentState == GAME||(currentState==END)); {
 			if (bTMButton.isOnButton(e.getX(), e.getY())) {
 				currentState = MENU;
 			}

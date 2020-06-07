@@ -50,6 +50,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelOnePlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 1;
 		player.x = 0;
 		player.y = 0;
@@ -75,6 +76,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelTwoPlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 2;
 		player.x = 0;
 		player.y = 0;
@@ -84,14 +86,16 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(1050, 600, 50, 500));
 		platforms.add(new Platform(1200, 500, 200, 600));
 		platforms.add(new Platform(1550, 600, 50, 500));
-		platforms.add(new Platform(1700, 500, 550, 500));
-		platforms.add(new Platform(1800, -200, 50, 470));
-		platforms.add(new Platform(2200, -200, 50, 700));
+		platforms.add(new Platform(1700, 500, 560, 500));
+		platforms.add(new Platform(1790, -200, 50, 470));
+		spikes.add(new Spike(1840, -200, 10, 470, true));
+		platforms.add(new Platform(2210, -200, 50, 700));
+		spikes.add(new Spike(2200, -180, 10, 680, true));
 		platforms.add(new Platform(2100, 400, 100, 20));
 		platforms.add(new Platform(1850, 250, 100, 20));
 		platforms.add(new Platform(2100, 100, 100, 20));
 		platforms.add(new Platform(1850, -50, 100, 20));
-		platforms.add(new Platform(2100, -200, 100, 20));
+		platforms.add(new Platform(2100, -200, 110, 20));
 		platforms.add(new Platform(2300, -200, 200, 20));
 		platforms.add(new Platform(2500, -100, 50, 20));
 		platforms.add(new Platform(2700, 0, 50, 20));
@@ -104,23 +108,23 @@ public class ObjectManager implements ActionListener {
 
 	void levelThreePlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 3;
 		player.x = 0;
 		player.y = 0;
 		spikes.add(new Spike(0, 5000, 5500, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
-		platforms.add(new Platform(700, 500, 100, 600));
-		platforms.add(new Platform(900, 300, 100, 600));
-		platforms.add(new Platform(1100, 100, 100, 600));
-		// spiral
-
-		// platforms.add(new Platform(, 300, 100, 600));
+		platforms.add(new Platform(700, 500, 100, 20));
+		platforms.add(new Platform(900, 300, 100, 20));
+		platforms.add(new Platform(1100, 100, 100, 20));
+		platforms.add(new Platform(1300, -100, 100, 20));
 
 		endObject = new EndObject(2725, 450, 50, 50);
 	}
 
 	void levelFourPlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 4;
 		player.x = 0;
 		player.y = 0;
@@ -144,6 +148,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelFivePlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 5;
 		player.x = 0;
 		player.y = 0;
@@ -192,8 +197,6 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(4800, 200, 100, 20));
 		platforms.add(new Platform(4800, 50, 10, 150));
 		platforms.add(new Platform(4800, 50, 100, 20));
-		spikes.add(new Spike(4900, 40, 10, 30, true));
-		spikes.add(new Spike(4900, 200, 10, 30, true));
 		// upper platforms
 		platforms.add(new Platform(4700, -50, 20, 10));
 		platforms.add(new Platform(4900, -50, 20, 10));
@@ -204,9 +207,11 @@ public class ObjectManager implements ActionListener {
 
 	void levelSixPlatforms() {
 		platforms.clear();
+		spikes.clear();
 		previousLevelNumber = 6;
 		player.x = 0;
 		player.y = 0;
+		spikes.add(new Spike(0, 5000, 5500, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		endObject = new EndObject(2810, 450, 50, 50);
 	}
