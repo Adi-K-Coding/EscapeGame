@@ -4,8 +4,9 @@ import java.awt.Graphics;
 public class GameButton extends GameObject {
 	String text;
 	int textx;
+	String color;
 
-	GameButton(int x, int y, String text, int textx, int width) {
+	GameButton(int x, int y, String text, int textx, int width, String color) {
 		super(x, y, width, 40);
 		this.text = text;
 		this.textx = textx;
@@ -22,7 +23,7 @@ public class GameButton extends GameObject {
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.getColor(null));//ask about why this works
 		g.drawString(text, textx, y + 29);
 		g.drawRoundRect(x, y, width, height, 10, 70);
 	}
