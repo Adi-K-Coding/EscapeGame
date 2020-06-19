@@ -135,10 +135,12 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(1300, -100, 100, 20));
 		platforms.add(new Platform(1500, -100, 1000, 20));
 		platforms.add(new Platform(2480, -1100, 20, 1000));
+		spikes.add(new Spike(2470, -1080, 10, 980, true));
 		platforms.add(new Platform(1500, -1100, 1000, 20));
 		platforms.add(new Platform(1500, -1100, 20, 700));
 		platforms.add(new Platform(1500, -400, 700, 20));
 		platforms.add(new Platform(2200, -850, 20, 470));
+		spikes.add(new Spike(2220, -840, 10, 460, true));
 		platforms.add(new Platform(1700, -850, 500, 20));
 		platforms.add(new Platform(2430, -290, 50, 10));// jumps
 		platforms.add(new Platform(2220, -480, 50, 10));
@@ -213,6 +215,7 @@ public class ObjectManager implements ActionListener {
 		previousLevelNumber = 6;
 		spikes.add(new Spike(0, 5000, 5500, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
+
 		endObject = new EndObject(2810, 450, 50, 50);
 	}
 

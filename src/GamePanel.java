@@ -125,9 +125,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			bTMButton.draw(g);
 		} else {
 			g.setColor(Color.cyan);
+			g.setColor(Color.cyan);
 			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
 			g.setColor(Color.DARK_GRAY);
 			bTMButton.draw(g);
+			g.setFont(titleFont);
+			g.drawString("You died", 200,200);
 		}
 
 	}
@@ -152,21 +155,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("UP");
 
 				player.up = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_S) {
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("DOWN");
 				player.down = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_A) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("LEFT");
 				player.left = true;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_D) {
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("RIGHT");
 				player.right = true;
 
@@ -212,21 +215,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("UP");
 
 				player.up = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_S) {
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("DOWN");
 				player.down = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_A) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("LEFT");
 				player.left = false;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_D) {
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("RIGHT");
 				player.right = false;
 
