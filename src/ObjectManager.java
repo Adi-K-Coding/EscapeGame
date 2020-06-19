@@ -88,6 +88,8 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(1840, -200, 10, 470, true));
 		platforms.add(new Platform(2210, -200, 50, 700));
 		spikes.add(new Spike(2200, -180, 10, 680, true));
+		spikes.add(new Spike(2300, 200, 420, 10, true));
+		spikes.add(new Spike(2800, 220, 10, 300, true));
 		platforms.add(new Platform(2100, 400, 100, 20));
 		platforms.add(new Platform(1850, 250, 100, 20));
 		platforms.add(new Platform(2100, 100, 100, 20));
