@@ -253,9 +253,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (instructionButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Instructions");
 				JOptionPane.showMessageDialog(null,
-						"Move your character using the arrow keys.\n"
-								+ "Use your mouse to aim and use press KEY to shoot.\n"
-								+ "Don't touch the spikes(red) and don't fall of the platforms(green)");
+						"Your village faces extinction at the hands of a fearsome monster\n"
+						+ "Manuever your character through six levels to find a path to safety for your village\n"
+						+ "Luckily, before you set off on your voyage, you find a stone of invulnerability which\n"
+						+ "grants you nine extra lives\n"
+						+ "Move your character using the arrow keys.\n"
+						+ "Avoid the deadly spikes(red) and don't fall of the platforms(green)\n"
+						+ "Escape the monster and save your village. Good Luck!");
 			}
 		}
 		if (currentState == GAME && objectManager.levelNumber == 0) {

@@ -90,6 +90,7 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(2200, -180, 10, 680, true));
 		spikes.add(new Spike(2300, 200, 420, 10, true));
 		spikes.add(new Spike(2800, 220, 10, 300, true));
+		spikes.add(new Spike(2700, 20, 200, 10, true));
 		platforms.add(new Platform(2100, 400, 100, 20));
 		platforms.add(new Platform(1850, 250, 100, 20));
 		platforms.add(new Platform(2100, 100, 100, 20));
@@ -134,6 +135,13 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(1100, 100, 100, 20));
 		platforms.add(new Platform(1300, -100, 100, 20));
 		platforms.add(new Platform(1500, -100, 1000, 20));
+		spikes.add(new Spike(1600, -200, 10, 100, true));
+		spikes.add(new Spike(1750,-400, 10, 100, true));
+		spikes.add(new Spike(1900, -200, 10, 100, true));
+		spikes.add(new Spike(2050, -400, 10, 100, true));
+		spikes.add(new Spike(2200, -200, 10, 100, true));
+		spikes.add(new Spike(2220, -390, 100, 10, true));
+		
 		platforms.add(new Platform(2480, -1100, 20, 1000));
 		spikes.add(new Spike(2470, -1080, 10, 980, true));
 		platforms.add(new Platform(1500, -1100, 1000, 20));
