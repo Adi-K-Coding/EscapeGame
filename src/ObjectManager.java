@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class ObjectManager implements ActionListener {
 
 	static ArrayList<Platform> platforms = new ArrayList<Platform>();
@@ -13,6 +15,12 @@ public class ObjectManager implements ActionListener {
 	public static EndObject endObject;
 	int levelNumber = 1;
 	int previousLevelNumber = 1;
+	int livesLeft = 10;
+	boolean level2Unlocked = false;
+	boolean level3Unlocked = false;
+	boolean level4Unlocked = false;
+	boolean level5Unlocked = false;
+	boolean level6Unlocked = false;
 
 	ObjectManager(Player player) {
 		ObjectManager.player = player;
@@ -136,12 +144,11 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(1300, -100, 100, 20));
 		platforms.add(new Platform(1500, -100, 1000, 20));
 		spikes.add(new Spike(1600, -200, 10, 100, true));
-		spikes.add(new Spike(1750,-400, 10, 100, true));
+		spikes.add(new Spike(1750, -380, 10, 100, true));
 		spikes.add(new Spike(1900, -200, 10, 100, true));
-		spikes.add(new Spike(2050, -400, 10, 100, true));
+		spikes.add(new Spike(2050, -380, 10, 100, true));
 		spikes.add(new Spike(2200, -200, 10, 100, true));
 		spikes.add(new Spike(2220, -390, 100, 10, true));
-		
 		platforms.add(new Platform(2480, -1100, 20, 1000));
 		spikes.add(new Spike(2470, -1080, 10, 980, true));
 		platforms.add(new Platform(1500, -1100, 1000, 20));
@@ -222,9 +229,37 @@ public class ObjectManager implements ActionListener {
 	void levelSixPlatforms() {
 		previousLevelNumber = 6;
 		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		//jumps to get to entrance
 		platforms.add(new Platform(100, 500, 500, 600));
-
-		endObject = new EndObject(2810, 450, 50, 50);
+		platforms.add(new Platform(810, 500, 100, 20));
+		platforms.add(new Platform(1120, 489, 100, 20));
+		platforms.add(new Platform(1430, 474, 100, 20));
+		platforms.add(new Platform(1740, 530, 100, 20));
+		platforms.add(new Platform(2050, 492, 100, 20));
+		platforms.add(new Platform(2360, 468, 100, 20));
+		platforms.add(new Platform(2670, 486, 100, 20));
+		platforms.add(new Platform(2980, 500, 100, 20));
+		platforms.add(new Platform(3290, 550, 100, 20));
+		platforms.add(new Platform(3600, 600, 100, 20));
+		platforms.add(new Platform(3910, 650, 100, 20));
+		platforms.add(new Platform(4220, 700, 80, 20));
+		//small box
+		platforms.add(new Platform(4300, 700, 500, 20));
+		platforms.add(new Platform(4800, 450, 20, 270));
+		platforms.add(new Platform(4300, 320, 520, 20));
+		platforms.add(new Platform(4300, 320, 20, 255));
+		platforms.add(new Platform(4300, 570, 400, 20));
+		platforms.add(new Platform(4420, 450, 400, 20));
+		//outer bounds of big rectangle
+		
+		
+		
+		
+		
+		
+		
+		
+		endObject = new EndObject(0, 450, 50, 50);
 	}
 
 	void draw(Graphics g) {
@@ -258,7 +293,18 @@ public class ObjectManager implements ActionListener {
 			}
 		}
 		if (endObject.collisionBox.intersects(player.collisionBox)) {
-			// levelNumber++;
+			if (previousLevelNumber == 1) {
+				level2Unlocked = true;
+			} else if (previousLevelNumber == 2) {
+				level3Unlocked = true;
+			} else if (previousLevelNumber == 3) {
+				level4Unlocked = true;
+			} else if (previousLevelNumber == 4) {
+				level5Unlocked = true;
+			} else if (previousLevelNumber == 5) {
+				level6Unlocked = true;
+			}
+
 			levelNumber = 0;
 			createLevel(levelNumber);
 		}
