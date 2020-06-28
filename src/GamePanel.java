@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200, "YELLOW");
 	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200, "YELLOW");
 	// BUTTONS ON END-STATE
-	GameButton bTMButton = new GameButton(10, 10, "Menu", 14, 40, "YELLOW");
+	GameButton bTMButton = new GameButton(10, 10, "Menu", 40, 100, "YELLOW");
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -182,7 +182,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				currentState = MENU;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				currentState = GAME;
+				//DELETE
+				player.x=3200;
+				player.y=-900;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_H) {
+				//DELETE
+				player.x=2500;
+				player.y=-1900;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_0) {

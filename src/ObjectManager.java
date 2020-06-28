@@ -268,7 +268,8 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(5620, -1220, 20, 1260, true));
 		platforms.add(new Platform(800, -1220, 4800, 20));// upper
 		spikes.add(new Spike(800, -1240, 4840, 20, true));
-		platforms.add(new Platform(600, -1200, 20, 1200));// left
+		platforms.add(new Platform(600, -1600, 20, 1600));// left
+		spikes.add(new Spike(620, -1600, 20, 1600, true));
 		// jumps up
 		platforms.add(new Platform(5800, 300, 100, 20));
 		platforms.add(new Platform(5820, 100, 100, 20));
@@ -294,31 +295,49 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(3800, -1378, 22, 11));
 		platforms.add(new Platform(3600, -1436, 20, 12));
 		platforms.add(new Platform(3400, -1499, 30, 27));
-		spikes.add(new Spike(3300, -1700, 20, 380, true));
+		spikes.add(new Spike(3300, -1700, 20, 460, true));
 		platforms.add(new Platform(3200, -1320, 25, 28));
 		platforms.add(new Platform(3000, -1386, 29, 11));
 		platforms.add(new Platform(2800, -1458, 17, 23));
 		platforms.add(new Platform(2600, -1499, 21, 27));
-		spikes.add(new Spike(2500, -1550, 20, 380, true));
-		//spikes.add(new Spike(2500, -1950, 20, 200, true));
+		spikes.add(new Spike(2500, -1550, 20, 320, true));
+		// spikes.add(new Spike(2500, -1950, 20, 200, true));
 		platforms.add(new Platform(2340, -1300, 100, 20));
-		spikes.add(new Spike(2300, -1400, 20, 230, true));
+		spikes.add(new Spike(2300, -1400, 20, 180, true));
 		spikes.add(new Spike(2300, -1800, 20, 200, true));
 		platforms.add(new Platform(2200, -1320, 13, 17));
 		platforms.add(new Platform(2000, -1386, 14, 10));
 		platforms.add(new Platform(1800, -1458, 29, 14));
 		platforms.add(new Platform(1600, -1499, 25, 17));
-		spikes.add(new Spike(1500, -1550, 20, 380, true));
-		//spikes.add(new Spike(1500, -1950, 20, 200, true));
+		spikes.add(new Spike(1500, -1550, 20, 320, true));
+		// spikes.add(new Spike(1500, -1950, 20, 200, true));
 		platforms.add(new Platform(1400, -1320, 12, 20));
 		platforms.add(new Platform(1200, -1386, 16, 19));
 		platforms.add(new Platform(1000, -1458, 23, 18));
 		platforms.add(new Platform(800, -1499, 28, 24));
-		
-		
-		
-		
-		
+		// interior
+		platforms.add(new Platform(600, -600, 3500, 20));
+		spikes.add(new Spike(1000, -780, 20, 180, true));
+		spikes.add(new Spike(1000, -1200, 20, 250, true));
+		spikes.add(new Spike(1500, -740, 20, 140, true));
+		spikes.add(new Spike(1500, -1200, 20, 300, true));
+		platforms.add(new Platform(1850, -800, 75, 10));
+		spikes.add(new Spike(2000, -980, 20, 380, true));
+		spikes.add(new Spike(2000, -1200, 20, 50, true));
+		// spike snake maze
+		spikes.add(new Spike(2500, -1200, 2300, 307, true));
+		spikes.add(new Spike(2600, -750, 10, 150, true));
+		spikes.add(new Spike(2700, -913, 10, 150, true));
+		spikes.add(new Spike(2800, -750, 10, 150, true));
+		spikes.add(new Spike(2900, -913, 10, 150, true));
+		spikes.add(new Spike(3000, -750, 10, 150, true));
+		spikes.add(new Spike(3100, -913, 10, 150, true));
+		spikes.add(new Spike(3200, -750, 10, 150, true));
+		// spike avoid jumps
+		spikes.add(new Spike(4080, -580, 20, 380, true));
+		spikes.add(new Spike(4080, -220, 1000, 20, true));
+		platforms.add(new Platform(4150, -340, 36, 10));
+
 		endObject = new EndObject(0, 450, 50, 50);
 	}
 
