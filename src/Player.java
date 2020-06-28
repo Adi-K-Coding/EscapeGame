@@ -10,6 +10,7 @@ public class Player extends GameObject {
 	boolean right;
 	double gravity = 1;
 	double velocity = 0;
+	private int livesLeft = 10;
 
 	Player(int x, int y, int direction) {
 		super(x, y, 50, 80);
@@ -22,6 +23,17 @@ public class Player extends GameObject {
 		g.fillRect(350, 220, width, height);
 	}
 
+	public void setLivesLeft(int livesLeft) {
+		this.livesLeft = livesLeft;
+	}
+
+	public int getLivesLeft() {
+		return livesLeft;
+	}
+	
+	
+	
+	
 	void update() {
 		velocity += gravity;
 		int dx = 0;

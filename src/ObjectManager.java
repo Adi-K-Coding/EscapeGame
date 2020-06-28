@@ -15,7 +15,6 @@ public class ObjectManager implements ActionListener {
 	public static EndObject endObject;
 	int levelNumber = 1;
 	int previousLevelNumber = 1;
-	int livesLeft = 10;
 	boolean level2Unlocked = false;
 	boolean level3Unlocked = false;
 	boolean level4Unlocked = false;
@@ -263,13 +262,12 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(5600, 500, 120, 20));
 		// outer bounds of big rectangle
 		platforms.add(new Platform(600, 0, 5000, 20));// lower
-		spikes.add(new Spike(600, 20, 5020, 20, true));
-		platforms.add(new Platform(5600, -1220, 20, 1240));// right
-		spikes.add(new Spike(5620, -1220, 20, 1260, true));
+		spikes.add(new Spike(600, 20, 5000, 20, true));// lower
+		spikes.add(new Spike(5600, -1220, 20, 1260, true));// right
 		platforms.add(new Platform(800, -1220, 4800, 20));// upper
-		spikes.add(new Spike(800, -1240, 4840, 20, true));
-		platforms.add(new Platform(600, -1600, 20, 1600));// left
-		spikes.add(new Spike(620, -1600, 20, 1600, true));
+		spikes.add(new Spike(800, -1240, 4820, 20, true));// upper
+		spikes.add(new Spike(600, -1600, 20, 1600, true));// left
+		// spikes.add(new Spike(600, -1600, 20, 1600, true));
 		// jumps up
 		platforms.add(new Platform(5800, 300, 100, 20));
 		platforms.add(new Platform(5820, 100, 100, 20));
@@ -325,7 +323,7 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(2000, -980, 20, 380, true));
 		spikes.add(new Spike(2000, -1200, 20, 50, true));
 		// spike snake maze
-		spikes.add(new Spike(2500, -1200, 2300, 307, true));
+		spikes.add(new Spike(2500, -1200, 2100, 307, true));
 		spikes.add(new Spike(2600, -750, 10, 150, true));
 		spikes.add(new Spike(2700, -913, 10, 150, true));
 		spikes.add(new Spike(2800, -750, 10, 150, true));
@@ -335,8 +333,30 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(3200, -750, 10, 150, true));
 		// spike avoid jumps
 		spikes.add(new Spike(4080, -580, 20, 380, true));
-		spikes.add(new Spike(4080, -220, 1000, 20, true));
-		platforms.add(new Platform(4150, -340, 36, 10));
+		spikes.add(new Spike(4080, -220, 1400, 20, true));
+		spikes.add(new Spike(4580, -1180, 20, 650, true));
+		spikes.add(new Spike(5080, -900, 20, 700, true));
+		platforms.add(new Platform(4150, -400, 5, 10));
+		platforms.add(new Platform(4367, -350, 5, 10));
+		platforms.add(new Platform(4422, -443, 5, 10));
+		platforms.add(new Platform(4542, -232, 5, 10));
+		platforms.add(new Platform(4675, -263, 5, 10));
+		platforms.add(new Platform(4799, -343, 5, 10));
+		platforms.add(new Platform(4949, -412, 5, 10));
+		platforms.add(new Platform(4822, -589, 5, 10));
+		platforms.add(new Platform(4723, -643, 5, 10));
+		platforms.add(new Platform(5000, -776, 5, 10));
+		platforms.add(new Platform(4814, -832, 5, 10));
+		// spike avoid drop
+		platforms.add(new Platform(5129, -839, 140, 10));
+		platforms.add(new Platform(5488, -632, 75, 10));
+		spikes.add(new Spike(5200, -750, 200, 10, true));
+		platforms.add(new Platform(5452, -436, 105, 10));
+		spikes.add(new Spike(5300, -450, 100, 10, true));
+		platforms.add(new Platform(5211, -436, 55, 10));
+		platforms.add(new Platform(5132, -336, 20, 10));
+		platforms.add(new Platform(5167, -236, 55, 10));
+		platforms.add(new Platform(5297, -236, 170, 10));
 
 		endObject = new EndObject(0, 450, 50, 50);
 	}
@@ -391,6 +411,7 @@ public class ObjectManager implements ActionListener {
 
 			if (player.collisionBox.intersects(spikes.get(o).collisionBox)) {
 				player.isAlive = false;
+				player.setLivesLeft(player.getLivesLeft() - 1);
 			}
 		}
 	}

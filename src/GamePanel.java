@@ -31,23 +31,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont;
 	Font titleFontTwo;
 	Timer frameDraw;
+	int difficultySetting = 0;
+	String difficultyString = "Easy";
+	boolean gameStarted = false;
 	// BUTTONS ON MENU
-	GameButton startButton = new GameButton(272, 250, "Start", 367, 250, "YELLOW");
-	GameButton difficultyButton = new GameButton(272, 300, "Choose Difficulty", 287, 250, "YELLOW");
-	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321, 250, "YELLOW");
-	GameButton levelSelectButton = new GameButton(272, 400, "Level Select", 326, 250, "YELLOW");
+	GameButton startButton = new GameButton(272, 250, "Start", 367, 250, Color.YELLOW);
+	GameButton difficultyButton = new GameButton(272, 400, "Choose Difficulty", 287, 250, Color.YELLOW);
+	GameButton instructionButton = new GameButton(272, 350, "Instructions", 321, 250, Color.YELLOW);
+	GameButton levelSelectButton = new GameButton(272, 300, "Level Select", 326, 250, Color.YELLOW);
 	boolean levelSelect = false;
 	// BUTTONS IN-GAME
-	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367, 250, "YELLOW");
-	GameButton duringPlayMenuButton = new GameButton(705, 10, "Menu", 712, 80, "YELLOW");
-	GameButton levelOneButton = new GameButton(50, 300, "Level One", 121, 200, "YELLOW");
-	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367, 200, "YELLOW");
-	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 617, 200, "YELLOW");
-	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 119, 200, "YELLOW");
-	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200, "YELLOW");
-	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200, "YELLOW");
+	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 367, 250, Color.YELLOW);
+	GameButton duringPlayMenuButton = new GameButton(705, 10, "Menu", 712, 80, Color.DARK_GRAY);
+	GameButton levelOneButton = new GameButton(50, 300, "Level One", 121, 200, Color.YELLOW);
+	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 367, 200, Color.YELLOW);
+	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 617, 200, Color.YELLOW);
+	GameButton levelFourButton = new GameButton(50, 350, "Level Four", 119, 200, Color.YELLOW);
+	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 367, 200, Color.YELLOW);
+	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 626, 200, Color.YELLOW);
 	// BUTTONS ON END-STATE
-	GameButton bTMButton = new GameButton(10, 10, "Menu", 40, 100, "YELLOW");
+	GameButton bTMButton = new GameButton(10, 10, "Menu", 40, 100, Color.YELLOW);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -88,9 +91,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		// Start, Change Character, and Instruction Buttons
 		g.setFont(titleFontTwo);
 		startButton.draw(g);
-		difficultyButton.draw(g);
 		instructionButton.draw(g);
 		levelSelectButton.draw(g);
+		if (gameStarted == false) {
+			difficultyButton.draw(g);
+		}
+		g.drawString("Difficulty: " + difficultyString, 305, 220);
 	}
 
 	void drawGameState(Graphics g) {
@@ -117,7 +123,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.setFont(titleFontTwo);
 			g.drawString("Level " + objectManager.levelNumber, 10, 30);
 			duringPlayMenuButton.draw(g);
-
+			g.drawString("Lives Left: " + player.getLivesLeft(), 10, 60);
 		}
 	}
 
@@ -182,14 +188,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				currentState = MENU;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				//DELETE
-				player.x=3200;
-				player.y=-900;
+				// DELETE
+				player.x = 5150;
+				player.y = -950;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_H) {
-				//DELETE
-				player.x=2500;
-				player.y=-1900;
+				// DELETE
+				player.x = 1000;
+				player.y = -1900;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_0) {
@@ -248,6 +254,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	@Override
+	// MENU
+	// MENU
+	// MENU
+	// MENU
+	// MENU
+	// MENU
+	// MENU
+	// MENU
 	public void mouseClicked(MouseEvent e) {
 		if (currentState == MENU) {
 			if (startButton.isOnButton(e.getX(), e.getY())) {
@@ -256,10 +270,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				currentState = GAME;
 				System.out.println("Start");
 				objectManager.player.isAlive = true;
+				gameStarted = true;
 			}
-			if (difficultyButton.isOnButton(e.getX(), e.getY())) {
-				
-				System.out.println("choose difficulty");
+
+			if (difficultyButton.isOnButton(e.getX(), e.getY()) && gameStarted == false) {
+				System.out.println("Difficulty: " + difficultyString);
+
+				difficultySetting++;
+				if (difficultySetting > 2) {
+					difficultySetting = 0;
+				}
+				if (difficultySetting == 0) {
+					player.setLivesLeft(10);
+					difficultyString = "Easy";
+				}
+				if (difficultySetting == 1) {
+					player.setLivesLeft(5);
+					difficultyString = "Hard";
+				}
+				if (difficultySetting == 2) {
+					player.setLivesLeft(1);
+					difficultyString = "Expert";
+				}
+
 			}
 			if (instructionButton.isOnButton(e.getX(), e.getY())) {
 				System.out.println("Instructions");
@@ -280,7 +313,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				levelSelect = true;
 			}
 		}
-		if (currentState == GAME && objectManager.levelNumber == 0) {
+		else if (currentState == GAME && objectManager.levelNumber == 0) {
 			if (levelSelect == false) {
 				if (nextLevelButton.isOnButton(e.getX(), e.getY())) {
 					objectManager.levelNumber = 1;
@@ -291,11 +324,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (levelOneButton.isOnButton(e.getX(), e.getY())) {
 				objectManager.levelNumber = 1;
 				objectManager.createLevel(objectManager.levelNumber);
+				gameStarted = true;
 			}
 			if (levelTwoButton.isOnButton(e.getX(), e.getY())) {
 				if (objectManager.level2Unlocked == true) {
 					objectManager.levelNumber = 2;
 					objectManager.createLevel(objectManager.levelNumber);
+					gameStarted = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "You have not unlocked this level yet");
 				}
@@ -304,6 +339,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				if (objectManager.level3Unlocked == true) {
 					objectManager.levelNumber = 3;
 					objectManager.createLevel(objectManager.levelNumber);
+					gameStarted = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "You have not unlocked this level yet");
 				}
@@ -313,6 +349,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				if (objectManager.level4Unlocked == true) {
 					objectManager.levelNumber = 4;
 					objectManager.createLevel(objectManager.levelNumber);
+					gameStarted = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "You have not unlocked this level yet");
 				}
@@ -321,6 +358,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				if (objectManager.level5Unlocked == true) {
 					objectManager.levelNumber = 5;
 					objectManager.createLevel(objectManager.levelNumber);
+					gameStarted = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "You have not unlocked this level yet");
 				}
@@ -329,6 +367,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				if (objectManager.level6Unlocked == true) {
 					objectManager.levelNumber = 6;
 					objectManager.createLevel(objectManager.levelNumber);
+					gameStarted = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "You have not unlocked this level yet");
 				}
