@@ -228,8 +228,15 @@ public class ObjectManager implements ActionListener {
 
 	void levelSixPlatforms() {
 		previousLevelNumber = 6;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
-		//jumps to get to entrance
+		spikes.add(new Spike(0, 5000, 7000, 50, false));
+		// cheat
+		platforms.add(new Platform(0, 700, 6000, 3));
+		platforms.add(new Platform(6000, -2000, 3, 3000));
+		platforms.add(new Platform(2600, -1500, 2900, 3));
+		platforms.add(new Platform(2100, -1300, 100, 3));
+		platforms.add(new Platform(800, -1500, 1200, 3));
+		platforms.add(new Platform(3400, -1600, 100, 3));
+		// jumps to right
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(810, 500, 100, 20));
 		platforms.add(new Platform(1120, 489, 100, 20));
@@ -243,17 +250,70 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(3600, 600, 100, 20));
 		platforms.add(new Platform(3910, 650, 100, 20));
 		platforms.add(new Platform(4220, 700, 80, 20));
-		//small box
+		// small box
 		platforms.add(new Platform(4300, 700, 500, 20));
 		platforms.add(new Platform(4800, 450, 20, 270));
 		platforms.add(new Platform(4300, 320, 520, 20));
 		platforms.add(new Platform(4300, 320, 20, 255));
 		platforms.add(new Platform(4300, 570, 400, 20));
 		platforms.add(new Platform(4420, 450, 400, 20));
-		//outer bounds of big rectangle
-		
-		
-		
+		// continue jumps
+		platforms.add(new Platform(4900, 500, 120, 20));
+		platforms.add(new Platform(5250, 500, 120, 20));
+		platforms.add(new Platform(5600, 500, 120, 20));
+		// outer bounds of big rectangle
+		platforms.add(new Platform(600, 0, 5000, 20));// lower
+		spikes.add(new Spike(600, 20, 5020, 20, true));
+		platforms.add(new Platform(5600, -1220, 20, 1240));// right
+		spikes.add(new Spike(5620, -1220, 20, 1260, true));
+		platforms.add(new Platform(800, -1220, 4800, 20));// upper
+		spikes.add(new Spike(800, -1240, 4840, 20, true));
+		platforms.add(new Platform(600, -1200, 20, 1200));// left
+		// jumps up
+		platforms.add(new Platform(5800, 300, 100, 20));
+		platforms.add(new Platform(5820, 100, 100, 20));
+		platforms.add(new Platform(5800, -100, 100, 20));
+		platforms.add(new Platform(5820, -300, 100, 20));
+		platforms.add(new Platform(5800, -500, 100, 20));
+		platforms.add(new Platform(5820, -700, 100, 20));
+		platforms.add(new Platform(5800, -900, 100, 20));
+		platforms.add(new Platform(5820, -1100, 100, 20));
+		platforms.add(new Platform(5800, -1300, 100, 20));
+		// jumps to entrance
+		platforms.add(new Platform(5600, -1350, 100, 20));
+		platforms.add(new Platform(5400, -1300, 20, 20));
+		platforms.add(new Platform(5200, -1368, 29, 10));
+		platforms.add(new Platform(5000, -1418, 27, 12));
+		spikes.add(new Spike(4900, -1570, 20, 340, true));
+		platforms.add(new Platform(4800, -1320, 22, 11));
+		platforms.add(new Platform(4600, -1378, 25, 19));
+		platforms.add(new Platform(4400, -1436, 11, 24));
+		platforms.add(new Platform(4200, -1499, 20, 12));
+		spikes.add(new Spike(4100, -1600, 20, 380, true));
+		platforms.add(new Platform(4000, -1320, 19, 28));
+		platforms.add(new Platform(3800, -1378, 22, 11));
+		platforms.add(new Platform(3600, -1436, 20, 12));
+		platforms.add(new Platform(3400, -1499, 30, 27));
+		spikes.add(new Spike(3300, -1700, 20, 380, true));
+		platforms.add(new Platform(3200, -1320, 25, 28));
+		platforms.add(new Platform(3000, -1386, 29, 11));
+		platforms.add(new Platform(2800, -1458, 17, 23));
+		platforms.add(new Platform(2600, -1499, 21, 27));
+		spikes.add(new Spike(2500, -1550, 20, 380, true));
+		//spikes.add(new Spike(2500, -1950, 20, 200, true));
+		platforms.add(new Platform(2340, -1300, 100, 20));
+		spikes.add(new Spike(2300, -1400, 20, 230, true));
+		spikes.add(new Spike(2300, -1800, 20, 200, true));
+		platforms.add(new Platform(2200, -1320, 13, 17));
+		platforms.add(new Platform(2000, -1386, 14, 10));
+		platforms.add(new Platform(1800, -1458, 29, 14));
+		platforms.add(new Platform(1600, -1499, 25, 17));
+		spikes.add(new Spike(1500, -1550, 20, 380, true));
+		//spikes.add(new Spike(1500, -1950, 20, 200, true));
+		platforms.add(new Platform(1400, -1320, 12, 20));
+		platforms.add(new Platform(1200, -1386, 16, 19));
+		platforms.add(new Platform(1000, -1458, 23, 18));
+		platforms.add(new Platform(800, -1499, 28, 24));
 		
 		
 		
