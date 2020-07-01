@@ -261,12 +261,12 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(5250, 500, 120, 20));
 		platforms.add(new Platform(5600, 500, 120, 20));
 		// outer bounds of big rectangle
-		platforms.add(new Platform(600, 0, 5000, 20));// lower
+		platforms.add(new Platform(620, 0, 4980, 20));// lower
 		spikes.add(new Spike(600, 20, 5000, 20, true));// lower
 		spikes.add(new Spike(5600, -1220, 20, 1260, true));// right
 		platforms.add(new Platform(800, -1220, 4800, 20));// upper
 		spikes.add(new Spike(800, -1240, 4820, 20, true));// upper
-		spikes.add(new Spike(600, -1600, 20, 1600, true));// left
+		spikes.add(new Spike(600, -1600, 20, 1620, true));// left
 		// spikes.add(new Spike(600, -1600, 20, 1600, true));
 		// jumps up
 		platforms.add(new Platform(5800, 300, 100, 20));
@@ -384,7 +384,6 @@ public class ObjectManager implements ActionListener {
 	void checkCollisions() {
 		for (int k = 0; k < platforms.size(); k++) {
 			if (player.collisionBox.intersects(platforms.get(k).collisionBox)) {
-				// System.out.println("it works");
 				platforms.get(k).collisionState = 1;
 
 			} else {
@@ -421,7 +420,6 @@ public class ObjectManager implements ActionListener {
 				player.collisionBox.width, player.collisionBox.height);
 		for (int k = 0; k < platforms.size(); k++) {
 			if (playerPredictPostition.intersects(platforms.get(k).collisionBox)) {
-				// System.out.println("Player and Platform Collided");
 				if (dx == 0) {
 					player.velocity = 0;
 				}
