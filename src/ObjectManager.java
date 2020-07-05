@@ -266,7 +266,7 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(5600, -1220, 20, 1260, true));// right
 		platforms.add(new Platform(800, -1220, 4800, 20));// upper
 		spikes.add(new Spike(800, -1240, 4820, 20, true));// upper
-		spikes.add(new Spike(600, -1600, 20, 1620, true));// left
+		spikes.add(new Spike(600, -1800, 20, 1820, true));// left
 		// spikes.add(new Spike(600, -1600, 20, 1600, true));
 		// jumps up
 		platforms.add(new Platform(5800, 300, 100, 20));
