@@ -70,6 +70,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void updateGameState() {
 		objectManager.update();
+
 		if (player.isAlive == false) {
 			currentState = END;
 		}
@@ -106,8 +107,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	// █▄▀ █▀▄ █▀█ ▀▄▀▄▀ ▄█ ░█░ █▀█ ░█░ ██▄ ▄█
 
 	void drawGameState(Graphics g) {
-		objectManager.draw(g);
-
+		if (objectManager.levelNumber != 0) {
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
+			g.setColor(Color.DARK_GRAY);
+			objectManager.draw(g);
+			g.setFont(titleFontTwo);
+			g.drawString("Level " + objectManager.levelNumber, 10, 30);
+			duringPlayMenuButton.draw(g);
+			g.drawString("Lives Left: " + player.getLivesLeft(), 10, 60);
+		}
+	
 		if (objectManager.levelNumber == 0) {
 			// drawing all transition state buttons
 			g.setColor(Color.darkGray);
@@ -125,13 +135,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				nextLevelButton.draw(g);
 			}
 		}
-		if (objectManager.levelNumber != 0) {
-			g.setColor(Color.DARK_GRAY);
-			g.setFont(titleFontTwo);
-			g.drawString("Level " + objectManager.levelNumber, 10, 30);
-			duringPlayMenuButton.draw(g);
-			g.drawString("Lives Left: " + player.getLivesLeft(), 10, 60);
-		}
+
 	}
 
 	void drawEndState(Graphics g) {
