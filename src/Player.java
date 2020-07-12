@@ -11,6 +11,9 @@ public class Player extends GameObject {
 	double gravity = 1;
 	double velocity = 0;
 	private int livesLeft = 10;
+	int stuckCounter = 0;
+	int lastGoodX = 0;
+	int lastGoodY = 0;
 
 	Player(int x, int y, int direction) {
 		super(x, y, 50, 80);
@@ -30,10 +33,7 @@ public class Player extends GameObject {
 	public int getLivesLeft() {
 		return livesLeft;
 	}
-	
-	
-	
-	
+
 	void update() {
 		velocity += gravity;
 		int dx = 0;
@@ -49,11 +49,28 @@ public class Player extends GameObject {
 		if (right) {
 			dx = speed;
 		}
-		if (ObjectManager.isGoingToCollide(0, dy) == false) {
+		boolean collidesHorizontally = ObjectManager.isGoingToCollide(dx, 0);
+		boolean collidesVertically = ObjectManager.isGoingToCollide(0, dy);
+		boolean collidesDiagonally = ObjectManager.isGoingToCollide(dx, dy);
+		if (collidesVertically == false) {
 			this.y += dy;
 		}
-		if (ObjectManager.isGoingToCollide(dx, 0) == false) {
+		if (collidesHorizontally == false) {
 			this.x += dx;
+		}
+
+		if (collidesDiagonally && (collidesHorizontally && collidesVertically)) {
+			stuckCounter++;
+
+		}
+		if (collidesDiagonally == false) {
+			lastGoodX = this.x;
+			lastGoodY = this.y;
+		}
+		if (stuckCounter > 3) {
+			x = lastGoodX;
+			y = lastGoodY;
+			stuckCounter = 0;
 		}
 	}
 }

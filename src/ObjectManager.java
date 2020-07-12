@@ -20,6 +20,7 @@ public class ObjectManager implements ActionListener {
 	boolean level4Unlocked = false;
 	boolean level5Unlocked = false;
 	boolean level6Unlocked = false;
+	boolean level6Beaten = false;
 
 	ObjectManager(Player player) {
 		ObjectManager.player = player;
@@ -97,7 +98,7 @@ public class ObjectManager implements ActionListener {
 		spikes.add(new Spike(2200, -180, 10, 680, true));
 		spikes.add(new Spike(2300, 200, 420, 10, true));
 		spikes.add(new Spike(2800, 220, 10, 300, true));
-		spikes.add(new Spike(2700, 20, 200, 10, true));
+		spikes.add(new Spike(2700, 20, 120, 10, true));
 		platforms.add(new Platform(2100, 400, 100, 20));
 		platforms.add(new Platform(1850, 250, 100, 20));
 		platforms.add(new Platform(2100, 100, 100, 20));
@@ -229,12 +230,12 @@ public class ObjectManager implements ActionListener {
 		previousLevelNumber = 6;
 		spikes.add(new Spike(0, 5000, 7000, 50, false));
 		// cheat
-		platforms.add(new Platform(0, 700, 6000, 3));
-		platforms.add(new Platform(6000, -2000, 3, 3000));
-		platforms.add(new Platform(2600, -1500, 2900, 3));
-		platforms.add(new Platform(2100, -1300, 100, 3));
-		platforms.add(new Platform(800, -1500, 1200, 3));
-		platforms.add(new Platform(3400, -1600, 100, 3));
+//		platforms.add(new Platform(0, 700, 6000, 3));
+//		platforms.add(new Platform(6000, -2000, 3, 3000));
+//		platforms.add(new Platform(2600, -1500, 2900, 3));
+//		platforms.add(new Platform(2100, -1300, 100, 3));
+//		platforms.add(new Platform(800, -1500, 1200, 3));
+//		platforms.add(new Platform(3400, -1600, 100, 3));
 		// jumps to right
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(810, 500, 100, 20));
@@ -293,13 +294,12 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(3800, -1378, 22, 11));
 		platforms.add(new Platform(3600, -1436, 20, 12));
 		platforms.add(new Platform(3400, -1499, 30, 27));
-		spikes.add(new Spike(3300, -1700, 20, 460, true));
+		spikes.add(new Spike(3300, -1660, 20, 420, true));
 		platforms.add(new Platform(3200, -1320, 25, 28));
 		platforms.add(new Platform(3000, -1386, 29, 11));
 		platforms.add(new Platform(2800, -1458, 17, 23));
 		platforms.add(new Platform(2600, -1499, 21, 27));
 		spikes.add(new Spike(2500, -1550, 20, 320, true));
-		// spikes.add(new Spike(2500, -1950, 20, 200, true));
 		platforms.add(new Platform(2340, -1300, 100, 20));
 		spikes.add(new Spike(2300, -1400, 20, 180, true));
 		spikes.add(new Spike(2300, -1800, 20, 200, true));
@@ -308,11 +308,15 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(1800, -1458, 29, 14));
 		platforms.add(new Platform(1600, -1499, 25, 17));
 		spikes.add(new Spike(1500, -1550, 20, 320, true));
-		// spikes.add(new Spike(1500, -1950, 20, 200, true));
+		spikes.add(new Spike(1500, -2050, 20, 250, true));
 		platforms.add(new Platform(1400, -1320, 12, 20));
 		platforms.add(new Platform(1200, -1386, 16, 19));
 		platforms.add(new Platform(1000, -1458, 23, 18));
 		platforms.add(new Platform(800, -1499, 28, 24));
+		// leading down into interior
+		platforms.add(new Platform(670, -1299, 20, 20));
+		platforms.add(new Platform(720, -1055, 20, 20));
+		platforms.add(new Platform(670, -860, 20, 20));
 		// interior
 		platforms.add(new Platform(600, -600, 3500, 20));
 		spikes.add(new Spike(1000, -780, 20, 180, true));
@@ -357,8 +361,19 @@ public class ObjectManager implements ActionListener {
 		platforms.add(new Platform(5132, -336, 20, 10));
 		platforms.add(new Platform(5167, -236, 55, 10));
 		platforms.add(new Platform(5297, -236, 170, 10));
-
-		endObject = new EndObject(0, 450, 50, 50);
+		// to get to ending
+		platforms.add(new Platform(4080, -200, 1400, 10));
+		spikes.add(new Spike(4900, -10, 10, 10, true));
+		spikes.add(new Spike(5100, -10, 10, 10, true));
+		spikes.add(new Spike(4600, -10, 10, 10, true));
+		spikes.add(new Spike(4400, -10, 10, 10, true));
+		spikes.add(new Spike(4100, -10, 10, 10, true));
+		platforms.add(new Platform(3700, -100, 200, 10));
+		platforms.add(new Platform(3500, -200, 200, 10));
+		platforms.add(new Platform(3300, -300, 200, 10));
+		spikes.add(new Spike(3300, -290, 10, 300, true));
+		// ending
+		endObject = new EndObject(3100, -100, 50, 100);
 	}
 
 	void draw(Graphics g) {
@@ -401,6 +416,8 @@ public class ObjectManager implements ActionListener {
 				level5Unlocked = true;
 			} else if (previousLevelNumber == 5) {
 				level6Unlocked = true;
+			} else if (previousLevelNumber == 6) {
+				level6Beaten = true;
 			}
 
 			levelNumber = 0;

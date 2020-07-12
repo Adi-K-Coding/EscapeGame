@@ -73,6 +73,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (player.isAlive == false) {
 			currentState = END;
 		}
+		if (objectManager.level6Beaten == true) {
+			currentState = END;
+		}
 	}
 
 	void updateEndState() {
@@ -134,21 +137,30 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	void drawEndState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
-		g.setColor(Color.CYAN);
-		g.setFont(titleFont);
-		g.drawString("You died", 242, 200);
-		if (player.getLivesLeft() > 0) {
-			g.setFont(titleFontTwo);
-			bTMButton.draw(g);
-			g.setFont(titleFontTwo);
-			g.drawString("Respawn to resume your mission", 190, 300);
-		} else {
-			g.setColor(Color.WHITE);
-			g.setFont(titleFontTwo);
-			g.drawString("Your village was brutally slaughtered by the monster", 63, 300);
-			g.drawString("Better luck next time", 270, 350);
-		}
 
+		if (objectManager.level6Beaten == true) {
+			g.setFont(titleFont);
+			g.setColor(Color.WHITE);
+			g.drawString("Congratulations", 125, 150);
+			g.setFont(titleFontTwo);
+			g.drawString("Thanks to you finding a safe path, your villagers ", 93, 300);
+			g.drawString("escaped from the monster and got to safety", 129, 375);
+		} else {
+			g.setColor(Color.CYAN);
+			g.setFont(titleFont);
+			g.drawString("You died", 242, 200);
+			if (player.getLivesLeft() > 0) {
+				g.setFont(titleFontTwo);
+				bTMButton.draw(g);
+				g.setFont(titleFontTwo);
+				g.drawString("Respawn to resume your mission", 190, 300);
+			} else {
+				g.setColor(Color.WHITE);
+				g.setFont(titleFontTwo);
+				g.drawString("Your village was brutally slaughtered by the monster", 63, 300);
+				g.drawString("Better luck next time", 270, 350);
+			}
+		}
 	}
 
 	@Override
@@ -190,48 +202,35 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				player.right = true;
 
 			}
-			// temporary code for switching screens
-			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				currentState = MENU;
+
+			if (e.getKeyCode() == KeyEvent.VK_0) {
+				objectManager.levelNumber = 0;
+				objectManager.createLevel(0);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				// DELETE
-				player.x = 5150;
-				player.y = -950;
+			if (e.getKeyCode() == KeyEvent.VK_1) {
+				objectManager.levelNumber = 1;
+				objectManager.createLevel(1);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_H) {
-				// DELETE
-				player.x = 1000;
-				player.y = -1900;
+			if (e.getKeyCode() == KeyEvent.VK_2) {
+				objectManager.levelNumber = 2;
+				objectManager.createLevel(2);
 			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_0) {
-			objectManager.levelNumber = 0;
-			objectManager.createLevel(0);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_1) {
-			objectManager.levelNumber = 1;
-			objectManager.createLevel(1);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_2) {
-			objectManager.levelNumber = 2;
-			objectManager.createLevel(2);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_3) {
-			objectManager.levelNumber = 3;
-			objectManager.createLevel(3);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_4) {
-			objectManager.levelNumber = 4;
-			objectManager.createLevel(4);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_5) {
-			objectManager.levelNumber = 5;
-			objectManager.createLevel(5);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_6) {
-			objectManager.levelNumber = 6;
-			objectManager.createLevel(6);
+			if (e.getKeyCode() == KeyEvent.VK_3) {
+				objectManager.levelNumber = 3;
+				objectManager.createLevel(3);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_4) {
+				objectManager.levelNumber = 4;
+				objectManager.createLevel(4);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_5) {
+				objectManager.levelNumber = 5;
+				objectManager.createLevel(5);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_6) {
+				objectManager.levelNumber = 6;
+				objectManager.createLevel(6);
+			}
 		}
 	}
 
@@ -403,8 +402,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			}
 		}
 		if (currentState == END) {
-			if (bTMButton.isOnButton(e.getX(), e.getY()) && player.getLivesLeft() > 0) {
-				currentState = MENU;
+			if (objectManager.level6Beaten == false) {
+				if (bTMButton.isOnButton(e.getX(), e.getY()) && player.getLivesLeft() > 0) {
+					currentState = MENU;
+				}
 			}
 		}
 		//
