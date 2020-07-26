@@ -42,7 +42,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	boolean levelSelect = false;
 	// BUTTONS IN-GAME
 	GameButton nextLevelButton = new GameButton(272, 150, "Next Level", 334, 250, Color.YELLOW);
-	GameButton duringPlayMenuButton = new GameButton(705, 10, "Menu", 712, 80, Color.DARK_GRAY);
+	// GameButton duringPlayMenuButton = new GameButton(705, 10, "Menu", 712, 80,
+	// Color.DARK_GRAY);
 	GameButton levelOneButton = new GameButton(50, 300, "Level One", 93, 200, Color.YELLOW);
 	GameButton levelTwoButton = new GameButton(300, 300, "Level Two", 337, 200, Color.YELLOW);
 	GameButton levelThreeButton = new GameButton(550, 300, "Level Three", 577, 200, Color.YELLOW);
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	GameButton levelFiveButton = new GameButton(300, 350, "Level Five", 337, 200, Color.YELLOW);
 	GameButton levelSixButton = new GameButton(550, 350, "Level Six", 596, 200, Color.YELLOW);
 	// BUTTONS ON END-STATE
-	GameButton bTMButton = new GameButton(10, 10, "Menu", 27, 100, Color.YELLOW);
+	// GameButton bTMButton = new GameButton(10, 10, "Menu", 27, 100, Color.YELLOW);
 	// PLAYER OBJECT
 	Player player = new Player(0, 0, 0);
 	ObjectManager objectManager = new ObjectManager(player);
@@ -103,8 +104,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.drawString("Difficulty: " + difficultyString, 305, 220);
 	}
 
-	// █▀▄ █▀█ ▄▀█ █░█░█ █▀ ▀█▀ ▄▀█ ▀█▀ █▀▀ █▀
-	// █▄▀ █▀▄ █▀█ ▀▄▀▄▀ ▄█ ░█░ █▀█ ░█░ ██▄ ▄█
 
 	void drawGameState(Graphics g) {
 		if (objectManager.levelNumber != 0) {
@@ -114,17 +113,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			objectManager.draw(g);
 			g.setFont(titleFontTwo);
 			g.drawString("Level " + objectManager.levelNumber, 10, 30);
-			duringPlayMenuButton.draw(g);
+			// duringPlayMenuButton.draw(g);
 			g.drawString("Lives Left: " + player.getLivesLeft(), 10, 60);
 		}
-	
+
 		if (objectManager.levelNumber == 0) {
 			// drawing all transition state buttons
 			g.setColor(Color.darkGray);
 			g.fillRect(0, 0, Escape.WIDTH, Escape.HEIGHT);
 			g.setColor(Color.YELLOW);
 			g.setFont(titleFontTwo);
-			bTMButton.draw(g);
+			//bTMButton.draw(g);
 			levelOneButton.draw(g);
 			levelTwoButton.draw(g);
 			levelThreeButton.draw(g);
@@ -155,9 +154,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.drawString("You died", 242, 200);
 			if (player.getLivesLeft() > 0) {
 				g.setFont(titleFontTwo);
-				bTMButton.draw(g);
+				//bTMButton.draw(g);
 				g.setFont(titleFontTwo);
 				g.drawString("Respawn to resume your mission", 190, 300);
+				g.drawString("Press M to return to menu", 230, 350);
 			} else {
 				g.setColor(Color.WHITE);
 				g.setFont(titleFontTwo);
@@ -187,22 +187,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("UP");
-
+			if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 				player.up = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("DOWN");
+			if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
 				player.down = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("LEFT");
+			if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 				player.left = true;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("RIGHT");
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 				player.right = true;
 
 			}
@@ -236,27 +231,39 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				objectManager.createLevel(6);
 			}
 		}
+		// bTMButton is for end state and transition level in game(level 0)
+		//
+		//
+		if (currentState == GAME) {
+			if (e.getKeyCode() == KeyEvent.VK_M) {
+				currentState = MENU;
+				levelSelect = false;
+			}
+		}
+
+		if (currentState == END) {
+			if (objectManager.level6Beaten == false) {
+				if (e.getKeyCode() == KeyEvent.VK_M && player.getLivesLeft() > 0) {
+					currentState = MENU;
+				}
+			}
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (currentState == GAME) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("UP");
-
+			if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 				player.up = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("DOWN");
+			if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
 				player.down = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("LEFT");
+			if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 				player.left = false;
 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("RIGHT");
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 				player.right = false;
 
 			}
@@ -310,9 +317,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 						+ "Manuever your character through six levels to find a path to safety for your village\n"
 						+ "Luckily, before you set off on your voyage, you find a stone of invulnerability which\n"
 						+ "grants you extra lives(based on difficulty)\n"
-						+ "Easy-10 Lives\nHard-5 Lives\nExpert-1 Life\n(toggle thru difficulty levels by clicking difficulty button)\n"
-						+ "Move your character using the arrow keys.\n"
+						+ "Easy-10 Lives\nHard-5 Lives\nExpert-1 Life\n(toggle through difficulty levels by clicking difficulty button)\n"
+						+ "Move your character using the arrow keys or WASD.\n"
 						+ "Avoid the deadly spikes(red) and don't fall of the platforms(green)\n"
+						+ "Return to the menu at any point by pressing M\n"
 						+ "Escape the monster and save your village. Good Luck!");
 			}
 			if (levelSelectButton.isOnButton(e.getX(), e.getY())) {
@@ -390,28 +398,28 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			}
 		}
 
-		// bTMButton is for end state and transition level in game(level 0)
-		//
-		//
-		if (currentState == GAME) {
-			if (bTMButton.isOnButton(e.getX(), e.getY())) {
-				currentState = MENU;
-				levelSelect = false;
-			}
-			if (objectManager.levelNumber != 0) {
-				if (duringPlayMenuButton.isOnButton(e.getX(), e.getY())) {
-					currentState = MENU;
-					levelSelect = false;
-				}
-			}
-		}
-		if (currentState == END) {
-			if (objectManager.level6Beaten == false) {
-				if (bTMButton.isOnButton(e.getX(), e.getY()) && player.getLivesLeft() > 0) {
-					currentState = MENU;
-				}
-			}
-		}
+		// // bTMButton is for end state and transition level in game(level 0)
+		// //
+		// //
+		// if (currentState == GAME) {
+		// if (bTMButton.isOnButton(e.getX(), e.getY())) {
+		// currentState = MENU;
+		// levelSelect = false;
+		// }
+		// if (objectManager.levelNumber != 0) {
+		// if (duringPlayMenuButton.isOnButton(e.getX(), e.getY())) {
+		// currentState = MENU;
+		// levelSelect = false;
+		// }
+		// }
+		// }
+		// if (currentState == END) {
+		// if (objectManager.level6Beaten == false) {
+		// if (bTMButton.isOnButton(e.getX(), e.getY()) && player.getLivesLeft() > 0) {
+		// currentState = MENU;
+		// }
+		// }
+		// }
 		//
 		//
 		// bTMButton is for end state and transition level in game(level 0)

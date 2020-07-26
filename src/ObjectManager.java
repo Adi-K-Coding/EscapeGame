@@ -63,7 +63,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelOnePlatforms() {
 		previousLevelNumber = 1;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		spikes.add(new Spike(-500, 5000, 6000, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(500, 350, 200, 20));
 		platforms.add(new Platform(750, 500, 200, 600));
@@ -85,7 +85,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelTwoPlatforms() {
 		previousLevelNumber = 2;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		spikes.add(new Spike(-500, 5000, 6000, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 500, 200, 600));
 		platforms.add(new Platform(1050, 600, 50, 500));
@@ -116,7 +116,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelThreePlatforms() {
 		previousLevelNumber = 3;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		spikes.add(new Spike(-500, 5000, 6000, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 350, 100, 750));
 		platforms.add(new Platform(900, 200, 100, 900));
@@ -136,7 +136,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelFourPlatforms() {
 		previousLevelNumber = 4;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		spikes.add(new Spike(-500, 5000, 6000, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 500, 100, 20));
 		platforms.add(new Platform(900, 300, 100, 20));
@@ -173,7 +173,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelFivePlatforms() {
 		previousLevelNumber = 5;
-		spikes.add(new Spike(0, 5000, 5500, 50, false));
+		spikes.add(new Spike(-500, 5000, 6000, 50, false));
 		platforms.add(new Platform(100, 500, 500, 600));
 		platforms.add(new Platform(700, 500, 500, 600));
 		platforms.add(new Platform(1300, 500, 100, 600));// THRU 1-JUMP PLATFORM
@@ -228,7 +228,7 @@ public class ObjectManager implements ActionListener {
 
 	void levelSixPlatforms() {
 		previousLevelNumber = 6;
-		spikes.add(new Spike(0, 5000, 7000, 50, false));
+		spikes.add(new Spike(-500, 5000, 7500, 50, false));
 		// cheat
 //		platforms.add(new Platform(0, 700, 6000, 3));
 //		platforms.add(new Platform(6000, -2000, 3, 3000));
